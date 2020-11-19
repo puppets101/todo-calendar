@@ -12,7 +12,7 @@
     />
     <link rel="stylesheet" href="../build/tailwindcss-output.css" />
     <link rel="stylesheet" href="../src/style.css" />
-    <script src="../scripts/main.js"></script>
+    <script src="../scripts/sidebar.js"></script>
   </head>
   <body class="bg-gray-400">
     <div class="min-h-screen flex">
@@ -21,7 +21,10 @@
           <div class="flex flex-col h-full justify-between">
             <div class="flex flex-col h-64 justify-between text-center">
               <div class="my-10 font-extrabold">
-                17 nov 2020 <br> Wednesday 15:40
+                <h3 id="year-clock"></h3>
+                <h3 id="month-clock"></h3>
+                <h2 id="weekday-clock"></h2>
+                <h2 id="time-clock"></h2>
               </div>
               <div class="my-10">
                 <h4 class="font-bold">Todays Todos:</h4>
