@@ -25,7 +25,32 @@
         </aside>
       </div>
       <div class="flex flex-col flex-1">
-        <header class="bg-gray-600 p-3 h-16">Header</header>
+        <!-- HEADER START -->
+        <header class="bg-gray-600 p-4 flex justify-between">
+          <!-- PREVIOUS MONTH START -->
+          <div>
+            <button class="text-black rounded-l px-1 hover:text-gray-800">
+              <i class="fas fa-chevron-left p-1"></i>
+              <span id="previous-month"></span>
+            </button>
+          </div>
+          <!-- END PREVIOUS MONTH -->
+
+          <!-- CURRENT MONTH START -->
+          <div id="current-month" class="text-black px-1"></div>
+          <!-- END CURRENT MONTH -->
+
+          <!-- NEXT MONTH START -->
+          <div class="">
+            <button class="text-black rounded-l px-1 hover:text-gray-800">
+              <span id="next-month"></span>
+              <i class="fas fa-chevron-right p-1"></i>
+            </button>
+          </div>
+          <!-- END NEXT MONTH -->
+        </header>
+        <!-- END HEADER -->
+
         <main class="bg-gray-500 p-3 h-full">
           <!-- <div class="grid grid-cols-7 text-center">
             <div class="bg-white">Monday</div>
