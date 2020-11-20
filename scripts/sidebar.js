@@ -1,6 +1,6 @@
-window.addEventListener('load', startClock);
+window.addEventListener('load', sidebar);
 
-function startClock() {
+function sidebar() {
   updateClock();
   setInterval(updateClock, 1000);
 }
