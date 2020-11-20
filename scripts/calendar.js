@@ -27,8 +27,8 @@ function addBlank() {
 
 function appendDayBoxes(daysArray) {
   let dayIndex = 1;
-  const startDate = new Date("2020-11-01");
-  const weekday = startDate.getDay();
+  const startDate = new Date("2020-11-01"); // sätta daysArray[0].getDay() istället?
+  const weekday = startDate.getDay(); // och i så fall ta bort denna
 
   for (let i = 0; i < 37; i++) {
     if (dayIndex != weekday && dayIndex < 7) {
