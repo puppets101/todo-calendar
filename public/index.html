@@ -13,18 +13,67 @@
     <link rel="stylesheet" href="../build/tailwindcss-output.css" />
     <link rel="stylesheet" href="../src/style.css" />
     <script src="../scripts/main.js"></script>
+    <script src="../scripts/header.js"></script>
+    <script src="../scripts/sidebar.js"></script>
   </head>
   <body class="bg-gray-400">
     <div class="min-h-screen flex">
+      <!-- SIDEBAR -->
       <div>
         <aside class="bg-gray-300 h-full w-64 p-3">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti
-          voluptatum iure quisquam iusto facere veritatis alias ipsam ea omnis
-          reiciendis.
+          <div class="flex flex-col h-full justify-between">
+            <div class="flex flex-col h-64 justify-between text-center">
+              <div class="my-10 font-extrabold">
+                <h3 id="year-clock"></h3>
+                <h3 id="month-clock"></h3>
+                <h2 id="weekday-clock"></h2>
+                <h2 id="time-clock"></h2>
+              </div>
+              <div class="my-10">
+                <h4 class="font-bold">Todays Todos:</h4>
+                  <ul>
+                    <li>Wash Clothes</li>
+                    <li>Get Mail</li>
+                    <li>Buy milk</li>
+                    <li>Walk Dog</li>
+                  </ul>
+              </div>
+              <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-6 border-b-4 border-blue-700 hover:border-blue-500 rounded">New Todo</button>
+            </div>
+            <div>
+              * Todos <br> * Swedish Holidays
+            </div>
+          </div>
         </aside>
       </div>
+      <!-- END SIDEBAR -->
       <div class="flex flex-col flex-1">
-        <header class="bg-gray-600 p-3 h-16">Header</header>
+        <!-- HEADER START -->
+        <header class="bg-gray-600 p-4 flex justify-between">
+          <!-- PREVIOUS MONTH START -->
+          <div>
+            <button class="text-black rounded-l px-1 hover:text-gray-800">
+              <i class="fas fa-chevron-left p-1"></i>
+              <span id="previous-month"></span>
+            </button>
+          </div>
+          <!-- END PREVIOUS MONTH -->
+
+          <!-- CURRENT MONTH START -->
+          <div id="current-month" class="text-black px-1"></div>
+          <!-- END CURRENT MONTH -->
+
+          <!-- NEXT MONTH START -->
+          <div class="">
+            <button class="text-black rounded-l px-1 hover:text-gray-800">
+              <span id="next-month"></span>
+              <i class="fas fa-chevron-right p-1"></i>
+            </button>
+          </div>
+          <!-- END NEXT MONTH -->
+        </header>
+        <!-- END HEADER -->
+
         <main class="bg-gray-500 p-3 h-full">
           <!-- <div class="grid grid-cols-7 text-center">
             <div class="bg-white">Monday</div>
