@@ -84,7 +84,7 @@
             <div>Saturday</div>
             <div class="bg-white">Sunday</div>
           </div> -->
-          <div class="bg-blue-300 grid grid-cols-7 row-auto h-full">
+          <div class="bg-white grid grid-cols-7 row-auto h-full overflow-hidden">
             <div class="bg-white flex items-center justify-center">Monday</div>
             <div class="bg-white flex items-center justify-center">Tuesday</div>
             <div class="bg-white flex items-center justify-center">
@@ -98,11 +98,30 @@
               Saturday
             </div>
             <div class="bg-white flex items-center justify-center">Sunday</div>
-            <div class="flex flex-col bg-green-300 p-1 min-h-8">
-              <div class="text-center">1</div>
-              <div>* Wash clothes</div>
-              <div>* Wash clothes</div>
+            
+            <!-- DAY START -->
+            <div id='day-cell' class="flex flex-col p-2 border-solid border-black border-2 rounded">
+             <div class='flex justify-between items-center mb-2'>
+               <div id='date-number'>1</div>
+               <div id='new-todo-day-icon' class='flex align-middle cursor-pointer'>
+                <i class="fas fa-plus text-sm"></i>
+               </div>
+             </div>
+              <div id='todo-item-container' class='flex items-center'>
+                <div id='todo-icon' class='h-2 w-2 bg-blue-400 rounded-full mr-1 overflow-hidden min-h-10'></div>
+                <span id='todo-title' class='text-xs truncate'>Baka kakor med lite gött i</span>
+              </div>
+              <div id='todo-item-container' class='flex items-center'>
+                <div id='todo-icon' class='h-2 w-2 bg-blue-400 rounded-full mr-1 overflow-hidden min-h-10'></div>
+                <span id='todo-title' class='text-xs truncate'>Baka kakor med lite gött i</span>
+              </div>
+              <div id='todo-item-container' class='flex items-center'>
+                <div id='todo-icon' class='h-2 w-2 bg-blue-400 rounded-full mr-1 overflow-hidden min-h-10'></div>
+                <span id='todo-title' class='text-xs truncate'>Baka kakor med lite gött i</span>
+              </div>
             </div>
+            <!-- DAY END -->
+
             <div class="flex flex-col bg-green-300 p-1 min-h-8">
               <div class="text-center">1</div>
               <div>* Wash clothes</div>
