@@ -1,9 +1,8 @@
 function calendar() {
   const startDate = new Date("2020-11-01");
   const currentMonth = startDate.getMonth();
-  const weekday = startDate.getDay();
-
   const daysArray = getDaysArray(startDate, currentMonth);
+
   appendDayBoxes(daysArray);
 }
 
@@ -18,43 +17,34 @@ function getDaysArray(startDate, currentMonth) {
 }
 
 function addDay() {
-  console.log("day");
+  const calendarGrid = document.getElementById("calendar-grid");
+  const dayBox = document.createElement("div");
+  dayBox.classList.add("daybox");
+  calendarGrid.appendChild(dayBox);
 }
 
 function addBlank() {
-  console.log("blank");
+  const calendarGrid = document.getElementById("calendar-grid");
+  const blankBox = document.createElement("div");
+  blankBox.classList.add("blankbox");
+  calendarGrid.appendChild(blankBox);
 }
 
 function appendDayBoxes(daysArray) {
-  let dayIndex = 1;
-  const startDate = new Date("2020-11-01"); // sätta daysArray[0].getDay() istället?
-  const weekday = startDate.getDay(); // och i så fall ta bort denna
+  const firstDay = daysArray[0].getDay(); // Index för första dagen i månaden
+  let dayIndex = 1; // Första cellen i griden motsvarar måndag, vilket är index 1 i daysArray
 
-  for (let i = 0; i < 37; i++) {
-    if (dayIndex != weekday && dayIndex < 7) {
+  for (let i = 0; i < 13; i++) {
+    // Varför funkar inte i <= 7?
+    if (dayIndex != firstDay && dayIndex < 7) {
       addBlank();
       dayIndex++;
       i++;
     } else {
       for (const day of daysArray) {
         addDay();
-        i++;
       }
+      break;
     }
   }
 }
-
-/*
-for (const day of daysArray) {
-  let i = 1 // första dagen i vår kalender, alltså måndag
-
-  if ((!(i = day.getDay()) && !(i === 7))  // Om inte första cellen i griden (1) är lika med månadens första index (0)
-    appendBlank() // append så många blanks som behövs
-    i++
-    }
-    else {
-      appendDay(day)
-    }
-  }
-}
-*/
