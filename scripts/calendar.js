@@ -1,9 +1,28 @@
 function calendar() {
-  const startDate = new Date("2020-11-01");
+  const date = new Date();
+  const startDate = new Date(date.getFullYear(), date.getMonth(), 1);
+
   const currentMonth = startDate.getMonth();
   const daysArray = getDaysArray(startDate, currentMonth);
 
+  calendarEventListeners();
   appendDayBoxes(daysArray);
+
+  updateMonthInView(); // Denna ska ligga högst i hierakring. När next/prev-knappar klickas ska denna köras fast med satta parametrar
+}
+
+function calendarEventListeners() {
+  /*
+  nextButton = updateMonthInView(nextMonth)
+
+  prevButton : updateMonthInView(prevMonth)
+  */
+}
+
+function updateMonthInView(monthIndex, yearIndex) {
+  /*
+  Kör alla funktioner som bygger en ny månad i kalendern, baserat på parametrarna 
+  */
 }
 
 function getDaysArray(startDate, currentMonth) {
@@ -16,10 +35,15 @@ function getDaysArray(startDate, currentMonth) {
   return daysArray;
 }
 
-function addDay() {
+/**
+ *
+ * @param {Date} day - Date object
+ */
+function addDay(day) {
   const calendarGrid = document.getElementById("calendar-grid");
   const dayBox = document.createElement("div");
   dayBox.classList.add("daybox");
+  dayBox.innerHTML = day.getDate();
   calendarGrid.appendChild(dayBox);
 }
 
@@ -42,7 +66,7 @@ function appendDayBoxes(daysArray) {
       i++;
     } else {
       for (const day of daysArray) {
-        addDay();
+        addDay(day);
       }
       break;
     }
