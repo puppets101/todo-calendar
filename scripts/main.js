@@ -4,6 +4,7 @@ function start() {
   mainEventListeners();
   header();
   sidebar();
+  calendar();
 }
 
 function mainEventListeners() {
