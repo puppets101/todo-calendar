@@ -3,7 +3,7 @@ const startDate = new Date(date.getFullYear(), date.getMonth(), 1);
 
 function calendar() {
   calendarEventListeners();
-
+  renderMonthsInHeader();
   populateCalendar();
 }
 
@@ -21,11 +21,17 @@ function calendarEventListeners() {
 
 function handlePreviousClick() {
   startDate.setMonth(startDate.getMonth() - 1);
+
+  // Declared in header.js
+  renderMonthsInHeader();
   populateCalendar();
 }
 
 function handleNextClick() {
   startDate.setMonth(startDate.getMonth() + 1);
+
+  // Declared in header.js
+  renderMonthsInHeader();
   populateCalendar();
 }
 
