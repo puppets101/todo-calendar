@@ -1,37 +1,43 @@
+const date = new Date();
+const startDate = new Date(date.getFullYear(), date.getMonth(), 1);
+
 function calendar() {
-  const date = new Date();
-  const startDate = new Date(date.getFullYear(), date.getMonth(), 1);
-
-  const currentMonth = startDate.getMonth();
-  const daysArray = getDaysArray(startDate, currentMonth);
-
   calendarEventListeners();
-  appendDayBoxes(daysArray);
 
-  updateMonthInView(); // Denna ska ligga högst i hierakring. När next/prev-knappar klickas ska denna köras fast med satta parametrar
+  populateCalendar();
 }
 
 function calendarEventListeners() {
-  /*
-  nextButton = updateMonthInView(nextMonth)
+  const prevMonthBtn = document.getElementById("previous-month");
+  const nextMonthBtn = document.getElementById("next-month");
 
-  prevButton : updateMonthInView(prevMonth)
-  */
+  prevMonthBtn.addEventListener("click", () => {
+    handlePreviousClick();
+  });
+  nextMonthBtn.addEventListener("click", () => {
+    handleNextClick();
+  });
 }
 
-function updateMonthInView(monthIndex, yearIndex) {
-  /*
-  Kör alla funktioner som bygger en ny månad i kalendern, baserat på parametrarna 
-  */
+function handlePreviousClick() {
+  startDate.setMonth(startDate.getMonth() - 1);
+  populateCalendar();
 }
 
-function getDaysArray(startDate, currentMonth) {
+function handleNextClick() {
+  startDate.setMonth(startDate.getMonth() + 1);
+  populateCalendar();
+}
+
+function getDaysArray(currentMonth) {
   const daysArray = [];
+  const copyDate = new Date(startDate);
 
-  while (startDate.getMonth() === currentMonth) {
-    daysArray.push(new Date(startDate));
-    startDate.setDate(startDate.getDate() + 1);
+  while (copyDate.getMonth() === currentMonth) {
+    daysArray.push(new Date(copyDate));
+    copyDate.setDate(copyDate.getDate() + 1);
   }
+  console.log(startDate);
   return daysArray;
 }
 
@@ -54,21 +60,33 @@ function addBlank() {
   calendarGrid.appendChild(blankBox);
 }
 
-function appendDayBoxes(daysArray) {
-  const firstDay = daysArray[0].getDay(); // Index för första dagen i månaden
+function populateCalendar() {
+  clearGrid();
+  const currentMonth = startDate.getMonth();
+  const daysArray = getDaysArray(currentMonth);
+
+  const firstDay = daysArray[0].getDay();
+
+  appendDayBoxes(firstDay, daysArray);
+  console.log(firstDay);
+}
+
+function appendDayBoxes(firstDay, daysArray) {
   let dayIndex = 1; // Första cellen i griden motsvarar måndag, vilket är index 1 i daysArray
 
-  for (let i = 0; i < 13; i++) {
-    // Varför funkar inte i <= 7?
+  for (let i = 0; i < 7; i++) {
     if (dayIndex != firstDay && dayIndex < 7) {
       addBlank();
       dayIndex++;
-      i++;
-    } else {
-      for (const day of daysArray) {
-        addDay(day);
-      }
-      break;
     }
   }
+
+  for (const day of daysArray) {
+    addDay(day);
+  }
+}
+
+function clearGrid() {
+  const calendarGrid = document.getElementById("calendar-grid");
+  calendarGrid.innerHTML = "";
 }
