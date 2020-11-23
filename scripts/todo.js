@@ -19,18 +19,27 @@ function addTodoEventListeners() {
   const exitModalButton = document.getElementById("exit-modal-button");
   exitModalButton.addEventListener("click", function () {
     todoModal.classList.remove("modal-visible");
+    todoTitleInput.value = "";
   });
 
-  // CREATE TODO BUTTON
+  // INPUT FIELD
+  todoTitleInput.addEventListener("change", function () {
+    addNewTodo(this.value);
+  });
+
+  // CREATE TODO ON BUTTON CLICK
   const createTodoButton = document.getElementById("create-todo-button");
   createTodoButton.addEventListener("click", function () {
     updateTodoList();
     todoModal.classList.remove("modal-visible");
   });
 
-  // INPUT FIELD
-  todoTitleInput.addEventListener("change", function () {
-    addNewTodo(this.value);
+  // CREATE TODO ON ENTER
+  todoTitleInput.addEventListener("keyup", function (event) {
+    if (event.key === "Enter") {
+      updateTodoList();
+      todoModal.classList.remove("modal-visible");
+    }
   });
 }
 
