@@ -4,8 +4,8 @@ function sidebar() {
   loadTodos();
 }
 
-function updateClock() {  
-  updateYear(date); 
+function updateClock() {
+  updateYear(date);
   updateMonth(date);
   updateWeekday(date);
   updateTime(date);
@@ -13,13 +13,13 @@ function updateClock() {
 
 // Year
 function updateYear(date) {
-  const year = document.getElementById('year-clock');
+  const year = document.getElementById("year-clock");
   year.innerText = date.getFullYear();
 }
 
 // Date and Month
 function updateMonth(date) {
-  const month = document.getElementById('month-clock');
+  const month = document.getElementById("month-clock");
   month.innerText = getMonthString(date);
 }
 
@@ -27,80 +27,98 @@ function getMonthString(date) {
   const dayOfMonth = date.getDate();
   const monthIndex = date.getMonth();
 
-  let prefix = dayOfMonth + ' ';
-  prefix = formatDateValue(dayOfMonth + ' ');
+  let prefix = dayOfMonth + " ";
+  prefix = formatDateValue(dayOfMonth + " ");
 
-  switch(monthIndex) {
-    case 0: return prefix + 'January';
-    case 1: return prefix + 'February';
-    case 2: return prefix + 'March';
-    case 3: return prefix + 'April';
-    case 4: return prefix + 'May';
-    case 5: return prefix + 'June';
-    case 6: return prefix + 'July';
-    case 7: return prefix + 'August';
-    case 8: return prefix + 'September';
-    case 9: return prefix + 'October';
-    case 10: return prefix + 'November';
-    case 11: return prefix + 'December';
+  switch (monthIndex) {
+    case 0:
+      return prefix + "January";
+    case 1:
+      return prefix + "February";
+    case 2:
+      return prefix + "March";
+    case 3:
+      return prefix + "April";
+    case 4:
+      return prefix + "May";
+    case 5:
+      return prefix + "June";
+    case 6:
+      return prefix + "July";
+    case 7:
+      return prefix + "August";
+    case 8:
+      return prefix + "September";
+    case 9:
+      return prefix + "October";
+    case 10:
+      return prefix + "November";
+    case 11:
+      return prefix + "December";
   }
 }
 
 // Weekday
 function updateWeekday(date) {
-  const weekday = document.getElementById('weekday-clock')
+  const weekday = document.getElementById("weekday-clock");
   weekday.innerText = getWeekdayString(date);
 }
 
 function getWeekdayString(date) {
   const weekdayIndex = date.getDay();
   switch (weekdayIndex) {
-    case 0: return 'Sunday';
-    case 1: return 'Monday';
-    case 2: return 'Tuesday';
-    case 3: return 'Wednesday';
-    case 4: return 'Thursday';
-    case 5: return 'Friday';
-    case 6: return 'Saturday';
+    case 0:
+      return "Sunday";
+    case 1:
+      return "Monday";
+    case 2:
+      return "Tuesday";
+    case 3:
+      return "Wednesday";
+    case 4:
+      return "Thursday";
+    case 5:
+      return "Friday";
+    case 6:
+      return "Saturday";
   }
 }
 
 // Time
 function updateTime(date) {
-  const time = document.getElementById('time-clock');
+  const time = document.getElementById("time-clock");
   let hours = date.getHours();
   let minutes = date.getMinutes();
   hours = formatDateValue(hours);
   minutes = formatDateValue(minutes);
-  time.innerText = hours + ':' + minutes; 
+  time.innerText = hours + ":" + minutes;
 }
 
 function formatDateValue(value) {
   if (value < 10) {
-    return '0' + value;
+    return "0" + value;
   }
   return value;
 }
 
 function loadTodos() {
-  showTodos();
+  updateTodoList();
 }
 
-function showTodos() {
-  const todaysTodoList = document.getElementById('sidebar-todays-todos');
-  todaysTodoList.innerHTML = '';
+function updateTodoList() {
+  const todaysTodoList = document.getElementById("sidebar-todays-todos");
+  todaysTodoList.innerHTML = "";
 
-  for (const todo of todoState) {
-    const liItem = document.createElement('li');
+  for (const todo of todoList) {
+    const liItem = document.createElement("li");
     liItem.innerHTML = todo.title;
-    liItem.classList.add('todos-list');
-    liItem.addEventListener('click', () => {
-      const index = todoState.indexOf(todo);
-      todoState.splice(index, 1);
-      showTodos();
-    }) 
+    liItem.classList.add("todos-list");
+    liItem.addEventListener("click", () => {
+      const index = todoList.indexOf(todo);
+      todoList.splice(index, 1);
+      updateTodoList();
+    });
 
     todaysTodoList.append(liItem);
   }
 }
-
