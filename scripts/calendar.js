@@ -43,7 +43,6 @@ function getDaysArray(currentMonth) {
     daysArray.push(new Date(copyDate));
     copyDate.setDate(copyDate.getDate() + 1);
   }
-  console.log(startDate);
   return daysArray;
 }
 
@@ -74,7 +73,6 @@ function populateCalendar() {
   const firstDay = daysArray[0].getDay();
 
   appendDayBoxes(firstDay, daysArray);
-  console.log(firstDay);
 }
 
 function appendDayBoxes(firstDay, daysArray) {
