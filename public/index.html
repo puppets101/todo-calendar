@@ -85,8 +85,6 @@
             <div class="bg-white">Sunday</div>
           </div> 
           <div id='calendar-grid' class="bg-white grid grid-cols-7 row-auto h-full overflow-hidden gap-1">
-            
-            
             <!-- <div class="bg-white flex items-center justify-center">Monday</div>
             <div class="bg-white flex items-center justify-center">Tuesday</div>
             <div class="bg-white flex items-center justify-center">
@@ -100,8 +98,14 @@
               Saturday
             </div>
             <div class="bg-white flex items-center justify-center">Sunday</div> -->
-            
-            
+          </div>
+          <div id='new-todo-modal' class='new-todo-modal flex justify-center items-center flex-col'>
+            <h2>Create new todo</h2>
+            <label for="title">Todo Title</label>
+            <input id='todo-title' type="text" value='' name='title'>
+
+            <button type='submit' id='create-todo-button' class='border-2 border-black'>Create todo</button>
+            <button id='exit-modal-button' class='border-2 border-black'>Exit modal</button>
           </div>
         </main>
       </div>

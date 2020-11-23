@@ -7,6 +7,24 @@
   background-color: grey;
 }
 
+/* ADD NEW TODO MODAL */
+
+.new-todo-modal {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 80%;
+  background-color: rgba(59, 59, 59, 0.795);
+  opacity: 0;
+  transition: all 300ms ease;
+}
+
+.modal-visible {
+  opacity: 1;
+}
+
 /* SIDEBAR */
 .todos-list {
   list-style-type: square;
