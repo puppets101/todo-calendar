@@ -5,6 +5,7 @@ function start() {
   header();
   sidebar();
   calendar();
+  todo();
 }
 
 function mainEventListeners() {

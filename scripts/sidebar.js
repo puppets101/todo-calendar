@@ -4,9 +4,7 @@ function sidebar() {
   loadTodos();
 }
 
-function updateClock() {
-  const date = new Date();
-  
+function updateClock() {  
   updateYear(date); 
   updateMonth(date);
   updateWeekday(date);
@@ -83,21 +81,6 @@ function formatDateValue(value) {
   }
   return value;
 }
-
-const todoState = [
-  {
-    title: 'Shop food',
-    date: new Date()
-  },
-  {
-    title: 'Cook food',
-    date: new Date()
-  },
-  {
-    title: 'Eat food',
-    date: new Date()
-  },
-];
 
 function loadTodos() {
   showTodos();
