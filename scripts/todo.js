@@ -8,17 +8,25 @@ function addTodoEventListeners() {
   const openTodoModal = document.getElementById("add-todo-button");
   const todoModal = document.getElementById("new-todo-modal");
   const todoTitleInput = document.getElementById("todo-title");
+  const modalBg = document.getElementById("modal-bg");
+  const exitModalButton = document.getElementById("exit-modal-button");
 
   // OPEN MODAL BUTTON
   openTodoModal.addEventListener("click", function () {
     todoTitleInput.value = "";
-    todoModal.classList.add("modal-visible");
+    openModal(todoModal, modalBg);
   });
 
   // EXIT MODAL BUTTON
-  const exitModalButton = document.getElementById("exit-modal-button");
   exitModalButton.addEventListener("click", function () {
     todoModal.classList.remove("modal-visible");
+    modalBg.classList.remove("modal-visible");
+    todoTitleInput.value = "";
+  });
+
+  // EXIT MODAL BACKGROUND
+  modalBg.addEventListener("click", function () {
+    closeModal(todoModal, modalBg);
     todoTitleInput.value = "";
   });
 
@@ -31,14 +39,14 @@ function addTodoEventListeners() {
   const createTodoButton = document.getElementById("create-todo-button");
   createTodoButton.addEventListener("click", function () {
     updateTodoList();
-    todoModal.classList.remove("modal-visible");
+    closeModal(todoModal, modalBg);
   });
 
   // CREATE TODO ON ENTER
   todoTitleInput.addEventListener("keyup", function (event) {
     if (event.key === "Enter") {
       updateTodoList();
-      todoModal.classList.remove("modal-visible");
+      closeModal(todoModal, modalBg);
     }
   });
 }
@@ -49,4 +57,14 @@ function addNewTodo(titleInput) {
     date: new Date(),
   };
   todoList.push(todoObject);
+}
+
+function openModal(todoModal, modalBg) {
+  todoModal.classList.add("modal-visible");
+  modalBg.classList.add("modal-visible");
+}
+
+function closeModal(todoModal, modalBg) {
+  todoModal.classList.remove("modal-visible");
+  modalBg.classList.remove("modal-visible");
 }
