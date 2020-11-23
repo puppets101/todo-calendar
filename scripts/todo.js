@@ -10,26 +10,26 @@ function addTodoEventListeners() {
   const todoTitleInput = document.getElementById("todo-title");
 
   // OPEN MODAL BUTTON
-  openTodoModal.addEventListener("click", function () {
+  openTodoModal.addEventListener("click", () => {
     todoTitleInput.value = "";
     todoModal.classList.add("modal-visible");
   });
 
   // EXIT MODAL BUTTON
   const exitModalButton = document.getElementById("exit-modal-button");
-  exitModalButton.addEventListener("click", function () {
+  exitModalButton.addEventListener("click", () => {
     todoModal.classList.remove("modal-visible");
   });
 
   // CREATE TODO BUTTON
   const createTodoButton = document.getElementById("create-todo-button");
-  createTodoButton.addEventListener("click", function () {
+  createTodoButton.addEventListener("click", () => {
     updateTodoList();
     todoModal.classList.remove("modal-visible");
   });
 
   // INPUT FIELD
-  todoTitleInput.addEventListener("change", function () {
+  todoTitleInput.addEventListener("change", () => {
     addNewTodo(this.value);
   });
 }
