@@ -1,6 +1,7 @@
 function sidebar() {
   updateClock();
   setInterval(updateClock, 1000);
+  loadTodos();
 }
 
 function updateClock() {
@@ -82,3 +83,41 @@ function formatDateValue(value) {
   }
   return value;
 }
+
+const todoState = [
+  {
+    title: 'Shop food',
+    date: new Date()
+  },
+  {
+    title: 'Cook food',
+    date: new Date()
+  },
+  {
+    title: 'Eat food',
+    date: new Date()
+  },
+];
+
+function loadTodos() {
+  showTodos();
+}
+
+function showTodos() {
+  const todaysTodoList = document.getElementById('sidebar-todays-todos');
+  todaysTodoList.innerHTML = '';
+
+  for (const todo of todoState) {
+    const liItem = document.createElement('li');
+    liItem.innerHTML = todo.title;
+    liItem.classList.add('todos-list');
+    liItem.addEventListener('click', () => {
+      const index = todoState.indexOf(todo);
+      todoState.splice(index, 1);
+      showTodos();
+    }) 
+
+    todaysTodoList.append(liItem);
+  }
+}
+

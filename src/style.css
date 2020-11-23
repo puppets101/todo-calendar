@@ -6,3 +6,10 @@
 .blankbox {
   background-color: grey;
 }
+
+/* SIDEBAR */
+.todos-list {
+  list-style-type: square;
+  text-align: left;
+  margin: 0 4rem;
+}
