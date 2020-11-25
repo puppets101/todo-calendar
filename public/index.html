@@ -38,10 +38,16 @@
                   <!-- Code injected from JavaScript -->
                 </div>
               </div>
-              <button id="add-todo-button" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-6 border-b-4 border-blue-700 hover:border-blue-500 rounded">New Todo</button>
+              <button
+                id="add-todo-button"
+                class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-6 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+              >
+                New Todo
+              </button>
             </div>
             <div>
-              * Todos <br> * Swedish Holidays
+              * Todos <br />
+              * Swedish Holidays
             </div>
           </div>
         </aside>
@@ -75,7 +81,7 @@
         <!-- END HEADER -->
 
         <main class="bg-gray-500 p-3 h-full relative">
-            <div class="grid grid-cols-7 text-center">
+          <div class="grid grid-cols-7 text-center">
             <div class="bg-white">Monday</div>
             <div>Tuesday</div>
             <div class="bg-white">Wednesday</div>
@@ -83,37 +89,55 @@
             <div class="bg-white">Friday</div>
             <div>Saturday</div>
             <div class="bg-white">Sunday</div>
-          </div> 
-          <div id='calendar-grid' class="bg-white grid grid-cols-7 row-auto h-full overflow-hidden gap-1">
-            <!-- <div class="bg-white flex items-center justify-center">Monday</div>
-            <div class="bg-white flex items-center justify-center">Tuesday</div>
-            <div class="bg-white flex items-center justify-center">
-              Wednesday
-            </div>
-            <div class="bg-white flex items-center justify-center">
-              Thursday
-            </div>
-            <div class="bg-white flex items-center justify-center">Friday</div>
-            <div class="bg-white flex items-center justify-center">
-              Saturday
-            </div>
-            <div class="bg-white flex items-center justify-center">Sunday</div> -->
           </div>
-          <div id='modal-bg' class='new-modal-bg'></div>
-          <div id='new-todo-modal' class='modal-content'>
-            <h2 class='text-xl'>Create new todo</h2>
+
+          <div
+            id="calendar-grid"
+            class="bg-white grid grid-cols-7 row-auto h-full overflow-hidden gap-1"
+          >
+            <!-- TODO INPUT -->
+          </div>
+          <div id="modal-bg" class="new-modal-bg"></div>
+          <div id="new-todo-modal" class="modal-content">
+            <h2 class="text-xl">Create new todo</h2>
             <label for="title">Todo Title</label>
-            <input class='border-b-2 mb-3' id='todo-title' type="text" value='' name='title'>
+            <input
+              class="border-b-2 mb-3"
+              id="todo-title"
+              type="text"
+              value=""
+              name="title"
+            />
             <label for="desciption">Description</label>
-            <textarea class='border-2 mb-3' id='todo-title' cols="30" rows="5" type="text" value=''
-              name='description'></textarea>
+            <textarea
+              class="border-2 mb-3"
+              id="todo-description"
+              cols="30"
+              rows="5"
+              type="text"
+              value=""
+              name="description"
+            ></textarea>
             <label for="todo-date">Choose date</label>
-            <input class='border-b-2 mb-3' id='todo-date' type="date" value='' name='todo-date'>
-            <button type='submit' id='create-todo-button' class='border-2 m-2'>Create todo</button>
-            <button id='exit-modal-button' class='black absolute top-0 right-0 mr-3 mt-2'><i
-                class="fas fa-times text-xl"></i></button>
+            <input
+              class="border-b-2 mb-3"
+              id="todo-date"
+              type="date"
+              value=""
+              name="todo-date"
+            />
+            <button type="submit" id="create-todo-button" class="border-2 m-2">
+              Create todo
+            </button>
+
+            <button
+              id="exit-modal-button"
+              class="black absolute top-0 right-0 mr-3 mt-2"
+            >
+              <i class="fas fa-times text-xl"></i>
+            </button>
           </div>
-          </main>
+        </main>
       </div>
     </div>
   </body>

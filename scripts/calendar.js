@@ -40,22 +40,48 @@ function getDaysArray(currentMonth) {
   const copyDate = new Date(startDate);
 
   while (copyDate.getMonth() === currentMonth) {
-    daysArray.push(new Date(copyDate));
+    daysArray.push({
+      date: new Date(copyDate),
+      dateId: formatDate(copyDate),
+    });
     copyDate.setDate(copyDate.getDate() + 1);
   }
   return daysArray;
 }
 
-/**
- *
- * @param {Date} day - Date object
- */
-function addDay(day) {
+function formatDate(copyDate) {
+  const dateToFormat = new Date(copyDate);
+
+  const year = copyDate.getFullYear();
+  let month = copyDate.getMonth() + 1;
+  let day = copyDate.getDate();
+
+  day < 10 ? (day = "0" + day) : day;
+  month < 10 ? (month = "0" + month) : month;
+
+  const formattedDate = String(year) + "-" + String(month) + "-" + String(day);
+
+  return formattedDate;
+}
+
+function addDay(day, numberOfTodos) {
   const calendarGrid = document.getElementById("calendar-grid");
   const dayBox = document.createElement("div");
+  const datePara = document.createElement("p");
+  const todoPara = document.createElement("p");
+
   dayBox.classList.add("daybox");
-  dayBox.innerHTML = day.getDate();
+  todoPara.classList.add("daybox-todo-number");
+
+  datePara.innerText = day.date.getDate();
+  console.log(day.dateId);
+  if (numberOfTodos != 0) {
+    todoPara.innerText = numberOfTodos;
+  }
+
   calendarGrid.appendChild(dayBox);
+  dayBox.appendChild(datePara);
+  dayBox.appendChild(todoPara);
 }
 
 function addBlank() {
@@ -70,13 +96,14 @@ function populateCalendar() {
   const currentMonth = startDate.getMonth();
   const daysArray = getDaysArray(currentMonth);
 
-  const firstDay = daysArray[0].getDay();
+  const firstDay = daysArray[0].date.getDay();
 
   appendDayBoxes(firstDay, daysArray);
 }
 
 function appendDayBoxes(firstDay, daysArray) {
   let dayIndex = 1; // Första cellen i griden motsvarar måndag, vilket är index 1 i daysArray
+  let numberOfTodos = 0;
 
   for (let i = 0; i < 7; i++) {
     if (dayIndex != firstDay && dayIndex < 7) {
@@ -86,7 +113,14 @@ function appendDayBoxes(firstDay, daysArray) {
   }
 
   for (const day of daysArray) {
-    addDay(day);
+    for (const todo of todoList) {
+      if (day.dateId === todo.dateId) {
+        numberOfTodos++;
+        console.log(todo.dateId);
+      }
+    }
+    addDay(day, numberOfTodos);
+    numberOfTodos = 0;
   }
 }
 
