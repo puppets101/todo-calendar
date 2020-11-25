@@ -1,10 +1,10 @@
 .daybox {
   display: flex;
-  flex-direction: column;
-  justify-content: start;
+  justify-content: space-between;
   align-items: baseline;
   background: white;
   border: 1px solid blue;
+  padding: 0.5rem;
 }
 
 .blankbox {
@@ -12,7 +12,6 @@
 }
 
 .daybox-todo-number {
-  margin: auto;
   text-align: center;
   background: red;
   width: 25px;
