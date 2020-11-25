@@ -7,6 +7,11 @@
   background-color: grey;
 }
 
+.daybox-todo-number {
+  background: red;
+  border-radius: 50%;
+}
+
 /* ADD NEW TODO MODAL */
 
 /* .new-todo-modal {

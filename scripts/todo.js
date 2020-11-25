@@ -1,7 +1,28 @@
 /**
  * @param {Array<Object>} todo dateId, title, description
  */
-const todoList = [];
+const todoList = [
+  {
+    dateId: "2020-11-20",
+    title: "Wash clothes",
+    description: "Remember to wash your clothes...",
+  },
+  {
+    dateId: "2020-11-21",
+    title: "clean apartment",
+    description: "Remember to vacuum and wipe floors",
+  },
+  {
+    dateId: "2020-11-20",
+    title: "Mow the lawn",
+    description: "Use the lawnmower",
+  },
+  {
+    dateId: "2021-01-10",
+    title: "clean new years mess",
+    description: "clean god dammit'",
+  },
+];
 
 function todo() {
   addTodoEventListeners();
@@ -65,7 +86,6 @@ function addNewTodo(titleInput, descriptionInput, dateInput) {
     dateId: dateInput,
   };
   todoList.push(todoObject);
-  console.log(todoList);
 }
 
 function openModal(todoModal, modalBg) {
@@ -77,52 +97,3 @@ function closeModal(todoModal, modalBg) {
   todoModal.classList.remove("modal-visible");
   modalBg.classList.remove("modal-visible");
 }
-
-// THIS IS ALL EXPERIMENTAL
-
-/* 
-
-daysArray 
-  - dateId (string YYYY-MM-DD)
-  - dateObject (new Date)
-
-todoList - this will be populated from input
-  - dateId (string YYYY-MM-DD)
-  - title (string)
-  - description (string)
-
-for (day of daysArray) {
-  for (todo of todoArray) {
-    if (day.dateId === todo.dateId) {
-      Append todo object to calendar cell
-    }
-  }
-}
-
-*/
-
-function compareDaysAndTodoList(todoList, daysArray) {
-  for (const day of daysArray) {
-    for (const todo of todoList) {
-      if (day.dateId === todo.dateId) {
-        // appendTodosToCell(todo);
-        console.log("todoObject: ", todo.title);
-        console.log("dateId: ", day.dateId);
-      }
-    }
-  }
-}
-
-function appendTodosToCell(todo) {
-  const numberToAppend = todo.length;
-}
-
-/* Handledning 
-
-- presentera hur vi tänkt kring matchningen 
-
-- Hur använder vi input från olika inputfält och sparar ner i objects
-
-- 
-
-*/
