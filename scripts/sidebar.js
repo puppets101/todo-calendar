@@ -111,7 +111,7 @@ function updateTodoList() {
 
   for (const todo of todoList) {
     const liItem = document.createElement("li");
-    liItem.innerHTML = todo.title;
+    liItem.innerHTML = todo.title + todo.description + todo.dateId;
     liItem.classList.add("todos-list");
     liItem.addEventListener("click", () => {
       const index = todoList.indexOf(todo);

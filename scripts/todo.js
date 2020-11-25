@@ -1,3 +1,6 @@
+/**
+ * @param {Array<Object>} todo dateId, title, description
+ */
 const todoList = [];
 
 function todo() {
@@ -7,13 +10,15 @@ function todo() {
 function addTodoEventListeners() {
   const openTodoModal = document.getElementById("add-todo-button");
   const todoModal = document.getElementById("new-todo-modal");
-  const todoTitleInput = document.getElementById("todo-title");
+  const titleInput = document.getElementById("todo-title");
+  const descriptionInput = document.getElementById("todo-description");
+  const dateInput = document.getElementById("todo-date");
   const modalBg = document.getElementById("modal-bg");
   const exitModalButton = document.getElementById("exit-modal-button");
 
   // OPEN MODAL BUTTON
   openTodoModal.addEventListener("click", function () {
-    todoTitleInput.value = "";
+    titleInput.value = "";
     openModal(todoModal, modalBg);
   });
 
@@ -21,42 +26,46 @@ function addTodoEventListeners() {
   exitModalButton.addEventListener("click", function () {
     todoModal.classList.remove("modal-visible");
     modalBg.classList.remove("modal-visible");
-    todoTitleInput.value = "";
+    titleInput.value = "";
   });
 
   // EXIT MODAL BACKGROUND
   modalBg.addEventListener("click", function () {
     closeModal(todoModal, modalBg);
-    todoTitleInput.value = "";
+    titleInput.value = "";
   });
 
   // INPUT FIELD
-  todoTitleInput.addEventListener("change", function () {
-    addNewTodo(this.value);
-  });
+  // todoTitleInput.addEventListener("change", function () {
+  //   addNewTodo(this.value);
+  // });
 
   // CREATE TODO ON BUTTON CLICK
   const createTodoButton = document.getElementById("create-todo-button");
   createTodoButton.addEventListener("click", function () {
+    addNewTodo(titleInput.value, descriptionInput.value, dateInput.value);
     updateTodoList();
     closeModal(todoModal, modalBg);
   });
 
   // CREATE TODO ON ENTER
-  todoTitleInput.addEventListener("keyup", function (event) {
-    if (event.key === "Enter") {
-      updateTodoList();
-      closeModal(todoModal, modalBg);
-    }
-  });
+  // add if for checking if modal is open
+  // todoTitleInput.addEventListener("keyup", function (event) {
+  //   if (event.key === "Enter") {
+  //     updateTodoList();
+  //     closeModal(todoModal, modalBg);
+  //   }
+  // });
 }
 
-function addNewTodo(titleInput) {
+function addNewTodo(titleInput, descriptionInput, dateInput) {
   const todoObject = {
     title: titleInput,
-    date: new Date(),
+    description: descriptionInput,
+    dateId: dateInput,
   };
   todoList.push(todoObject);
+  console.log(todoList);
 }
 
 function openModal(todoModal, modalBg) {
@@ -68,3 +77,52 @@ function closeModal(todoModal, modalBg) {
   todoModal.classList.remove("modal-visible");
   modalBg.classList.remove("modal-visible");
 }
+
+// THIS IS ALL EXPERIMENTAL
+
+/* 
+
+daysArray 
+  - dateId (string YYYY-MM-DD)
+  - dateObject (new Date)
+
+todoList - this will be populated from input
+  - dateId (string YYYY-MM-DD)
+  - title (string)
+  - description (string)
+
+for (day of daysArray) {
+  for (todo of todoArray) {
+    if (day.dateId === todo.dateId) {
+      Append todo object to calendar cell
+    }
+  }
+}
+
+*/
+
+function compareDaysAndTodoList(todoList, daysArray) {
+  for (const day of daysArray) {
+    for (const todo of todoList) {
+      if (day.dateId === todo.dateId) {
+        // appendTodosToCell(todo);
+        console.log("todoObject: ", todo.title);
+        console.log("dateId: ", day.dateId);
+      }
+    }
+  }
+}
+
+function appendTodosToCell(todo) {
+  const numberToAppend = todo.length;
+}
+
+/* Handledning 
+
+- presentera hur vi tänkt kring matchningen 
+
+- Hur använder vi input från olika inputfält och sparar ner i objects
+
+- 
+
+*/

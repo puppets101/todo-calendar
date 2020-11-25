@@ -40,21 +40,36 @@ function getDaysArray(currentMonth) {
   const copyDate = new Date(startDate);
 
   while (copyDate.getMonth() === currentMonth) {
-    daysArray.push(new Date(copyDate));
+    daysArray.push({
+      date: new Date(copyDate),
+      dateId: formatDate(copyDate),
+    });
     copyDate.setDate(copyDate.getDate() + 1);
   }
   return daysArray;
 }
 
-/**
- *
- * @param {Date} day - Date object
- */
+function formatDate(copyDate) {
+  const dateToFormat = new Date(copyDate);
+
+  const year = copyDate.getFullYear();
+  const month = copyDate.getMonth() + 1;
+  let day = copyDate.getDate();
+
+  if (day < 10) {
+    day = "0" + day;
+  }
+
+  const formattedDate = String(year) + "-" + String(month) + "-" + String(day);
+
+  return formattedDate;
+}
+
 function addDay(day) {
   const calendarGrid = document.getElementById("calendar-grid");
   const dayBox = document.createElement("div");
   dayBox.classList.add("daybox");
-  dayBox.innerHTML = day.getDate();
+  dayBox.innerHTML = day.date.getDate();
   calendarGrid.appendChild(dayBox);
 }
 
@@ -70,9 +85,10 @@ function populateCalendar() {
   const currentMonth = startDate.getMonth();
   const daysArray = getDaysArray(currentMonth);
 
-  const firstDay = daysArray[0].getDay();
+  const firstDay = daysArray[0].date.getDay();
 
   appendDayBoxes(firstDay, daysArray);
+  compareDaysAndTodoList(todoList, daysArray);
 }
 
 function appendDayBoxes(firstDay, daysArray) {
