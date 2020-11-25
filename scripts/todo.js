@@ -3,12 +3,12 @@
  */
 const todoList = [
   {
-    dateId: "2020-11-20",
+    dateId: "2020-11-25",
     title: "Wash clothes",
     description: "Remember to wash your clothes...",
   },
   {
-    dateId: "2020-11-21",
+    dateId: "2020-11-25",
     title: "clean apartment",
     description: "Remember to vacuum and wipe floors",
   },
@@ -65,7 +65,7 @@ function addTodoEventListeners() {
   const createTodoButton = document.getElementById("create-todo-button");
   createTodoButton.addEventListener("click", function () {
     addNewTodo(titleInput.value, descriptionInput.value, dateInput.value);
-    updateTodoList();
+    updateTodaysTodoList();
     closeModal(todoModal, modalBg);
   });
 
