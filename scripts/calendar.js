@@ -93,7 +93,7 @@ function openDayPopup(day, dayBox, daysArray, dayPopup) {
   dayPopup.classList.add("popup-visible");
 
   const dayPopupDate = document.getElementById("popup-date");
-  dayPopupDate.innerText = day.dateId;
+  dayPopupDate.innerText = getMonthString(day.date);
 
   const popUpTodoList = document.getElementById("popup-todo-list");
 }
