@@ -74,7 +74,6 @@ function addDay(day, numberOfTodos) {
   todoPara.classList.add("daybox-todo-number");
 
   datePara.innerText = day.date.getDate();
-  console.log(day.dateId);
   if (numberOfTodos != 0) {
     todoPara.innerText = numberOfTodos;
   }
@@ -116,7 +115,6 @@ function appendDayBoxes(firstDay, daysArray) {
     for (const todo of todoList) {
       if (day.dateId === todo.dateId) {
         numberOfTodos++;
-        console.log(todo.dateId);
       }
     }
     addDay(day, numberOfTodos);

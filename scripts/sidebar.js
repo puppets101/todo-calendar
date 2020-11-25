@@ -102,23 +102,29 @@ function formatDateValue(value) {
 }
 
 function loadTodos() {
-  updateTodoList();
+  updateTodaysTodoList();
 }
 
-function updateTodoList() {
+function updateTodaysTodoList() {
+  const copyDate = new Date(date);
   const todaysTodoList = document.getElementById("sidebar-todays-todos");
   todaysTodoList.innerHTML = "";
 
   for (const todo of todoList) {
-    const liItem = document.createElement("li");
-    liItem.innerHTML = todo.title + todo.description + todo.dateId;
-    liItem.classList.add("todos-list");
-    liItem.addEventListener("click", () => {
-      const index = todoList.indexOf(todo);
-      todoList.splice(index, 1);
-      updateTodoList();
-    });
-
-    todaysTodoList.append(liItem);
+    if (todo.dateId === formatDate(copyDate)) {
+      const liItem = document.createElement("li");
+      liItem.innerText = todo.title;
+      liItem.classList.add("todos-list");
+      todaysTodoList.appendChild(liItem);
+      liItem.addEventListener("click", function () {
+        removeListItem(todo);
+      });
+    }
   }
+}
+
+function removeListItem(todo) {
+  const index = todoList.indexOf(todo);
+  todoList.splice(index, 1);
+  updateTodaysTodoList();
 }
