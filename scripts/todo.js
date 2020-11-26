@@ -41,6 +41,8 @@ function addTodoEventListeners() {
   // OPEN MODAL BUTTON
   openTodoModal.addEventListener("click", function () {
     titleInput.value = "";
+    descriptionInput.value = "";
+    dateInput.value = "";
     openModal(todoModal, modalBg);
   });
 
