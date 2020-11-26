@@ -5,7 +5,8 @@ const todoList = [
   {
     dateId: "2020-11-25",
     title: "Wash clothes",
-    description: "Remember to wash your clothes...",
+    description:
+      "Hej jag heter herman och jag kommer från växjö bla bla bla bla bla bla bla bla ",
   },
   {
     dateId: "2020-11-25",
@@ -86,14 +87,15 @@ function addNewTodo(titleInput, descriptionInput, dateInput) {
     dateId: dateInput,
   };
   todoList.push(todoObject);
+  populateCalendar();
 }
 
-function openModal(todoModal, modalBg) {
-  todoModal.classList.add("modal-visible");
+function openModal(modal, modalBg) {
+  modal.classList.add("modal-visible");
   modalBg.classList.add("modal-visible");
 }
 
-function closeModal(todoModal, modalBg) {
-  todoModal.classList.remove("modal-visible");
+function closeModal(modal, modalBg) {
+  modal.classList.remove("modal-visible");
   modalBg.classList.remove("modal-visible");
 }

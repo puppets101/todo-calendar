@@ -61,7 +61,7 @@
   transition: all 300ms ease;
 
   border-radius: 5px;
-  padding: 1.5rem;
+  padding: 1rem 1.5rem;
 
   min-width: 40%;
   max-height: 80%;
@@ -71,11 +71,6 @@
 }
 
 .modal-visible {
-  display: flex;
-  opacity: 1;
-}
-
-.popup-visible {
   display: flex;
   opacity: 1;
 }
