@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html class="h-full" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../build/tailwindcss-output.css" />
+    <link rel="stylesheet" href="./src/style.css" />
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/header.js"></script>
+    <script src="./scripts/sidebar.js"></script>
+    <script src="./scripts/calendar.js"></script>
+    <script src="./scripts/todo.js"></script>
+  </head>
+  <body class="bg-gray-400 min-h-screen flex">
+    <!-- SIDEBAR -->
+    <aside class="h-full w-64 p-3">
+      <div class="py-2 flex justify-center">Title goes here!</div>
+      <div class="flex flex-col justify-between h-full">
+        <div class="flex flex-col">
+          <div class="bg-gray my-10 font-extrabold text-center">
+            <h3 id="month-clock"></h3>
+            <h2 id="weekday-clock"></h2>
+            <h2 id="time-clock"></h2>
+            <h3 id="year-clock"></h3>
+          </div>
+          <!-- TODAYS TODOS LIST -->
+          <div class="my-10">
+            <h4 class="font-bold text-center mb-2">To do today:</h4>
+            <ul id="sidebar-todays-todos">
+              <!-- Code injected from JavaScript -->
+            </ul>
+          </div>
+          <button
+            id="add-todo-button"
+            class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-6 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+          >
+            New Todo
+          </button>
+        </div>
+        <div class="py-4 flex flex-col">
+          <h2 class="py-1 italic">* Todos</h2>
+          <h2 class="py-1 italic">* Svenska helgdagar</h2>
+        </div>
+      </div>
+    </aside>
+
+    <!-- END SIDEBAR -->
+    <div class="flex flex-col flex-1">
+      <!-- HEADER START -->
+      <header class="bg-gray-600 p-4 flex justify-between">
+        <!-- PREVIOUS MONTH START -->
+        <div>
+          <button class="text-black rounded-l px-1 hover:text-gray-800">
+            <i class="fas fa-chevron-left p-1"></i>
+            <span id="previous-month"></span>
+          </button>
+        </div>
+        <!-- END PREVIOUS MONTH -->
+
+        <!-- CURRENT MONTH START -->
+        <div id="current-month" class="text-black px-1"></div>
+        <!-- END CURRENT MONTH -->
+
+        <!-- NEXT MONTH START -->
+        <div class="">
+          <button class="text-black rounded-l px-1 hover:text-gray-800">
+            <span id="next-month"></span>
+            <i class="fas fa-chevron-right p-1"></i>
+          </button>
+        </div>
+        <!-- END NEXT MONTH -->
+      </header>
+      <!-- END HEADER -->
+
+      <main class="bg-gray-500 p-3 h-full relative flex flex-col">
+        <div class="grid grid-cols-7 text-center">
+          <div class="bg-white">Monday</div>
+          <div>Tuesday</div>
+          <div class="bg-white">Wednesday</div>
+          <div>Thursday</div>
+          <div class="bg-white">Friday</div>
+          <div>Saturday</div>
+          <div class="bg-white">Sunday</div>
+        </div>
+
+        <div
+          id="calendar-grid"
+          class="grid grid-cols-7 h-full grid-rows-6 overflow-hidden gap-1"
+        ></div>
+        <!-- TODO INPUT -->
+        <div id="modal-bg" class="new-modal-bg"></div>
+        <div id="new-todo-modal" class="modal-content">
+          <h2 class="text-xl">Create new todo</h2>
+          <label for="title">Todo Title</label>
+          <input
+            class="border-b-2 mb-3"
+            id="todo-title"
+            type="text"
+            value=""
+            name="title"
+          />
+          <label for="desciption">Description</label>
+          <textarea
+            class="border-2 mb-3"
+            id="todo-description"
+            cols="30"
+            rows="5"
+            type="text"
+            value=""
+            name="description"
+          ></textarea>
+          <label for="todo-date">Choose date</label>
+          <input
+            class="border-b-2 mb-3"
+            id="todo-date"
+            type="date"
+            value=""
+            name="todo-date"
+          />
+          <button type="submit" id="create-todo-button" class="border-2 m-2">
+            Create todo
+          </button>
+          <button
+            id="exit-modal-button"
+            class="black absolute top-0 right-0 mr-3 mt-2"
+          >
+            <i class="fas fa-times text-xl"></i>
+          </button>
+        </div>
+        <!-- END TODO INPUT -->
+
+        <!-- DAY POP-UP -->
+        <div id="day-popup" class="day-popup">
+          <button id="exit-day-popup" class="flex justify-end pb-2">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+          <div>
+            <div class="flex w-full justify-between font-bold">
+              <h2>Todos on this day</h2>
+              <h2 id="popup-date">November 25</h2>
+            </div>
+            <hr class="pb-4" />
+          </div>
+          <div id="popup-todo-list" class="flex flex-col py-2">
+            <!-- INJECTED FROM CALENDAR.JS -->
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
