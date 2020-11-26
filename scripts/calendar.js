@@ -64,11 +64,16 @@ function formatDate(copyDate) {
   return formattedDate;
 }
 
-function addDay(day, numberOfTodos) {
+function addDay(day, numberOfTodos, daysArray) {
   const calendarGrid = document.getElementById("calendar-grid");
+  const dayPopup = document.getElementById("day-popup");
   const dayBox = document.createElement("div");
   const datePara = document.createElement("p");
   const todoPara = document.createElement("p");
+
+  dayBox.addEventListener("click", function () {
+    openDayPopup(day, dayBox, daysArray, dayPopup);
+  });
 
   dayBox.classList.add("daybox");
   todoPara.classList.add("daybox-todo-number");
@@ -81,6 +86,16 @@ function addDay(day, numberOfTodos) {
   calendarGrid.appendChild(dayBox);
   dayBox.appendChild(datePara);
   dayBox.appendChild(todoPara);
+}
+
+function openDayPopup(day, dayBox, daysArray, dayPopup) {
+  // Loopa genom daysArray och todoList och jämför med dateId
+  dayPopup.classList.add("popup-visible");
+
+  const dayPopupDate = document.getElementById("popup-date");
+  dayPopupDate.innerText = getMonthString(day.date);
+
+  const popUpTodoList = document.getElementById("popup-todo-list");
 }
 
 function addBlank() {
@@ -117,7 +132,7 @@ function appendDayBoxes(firstDay, daysArray) {
         numberOfTodos++;
       }
     }
-    addDay(day, numberOfTodos);
+    addDay(day, numberOfTodos, daysArray); // Loopa genom daysArray och todoList och jämför med dateId
     numberOfTodos = 0;
   }
 }

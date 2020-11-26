@@ -1,6 +1,10 @@
 .daybox {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
   background: white;
   border: 1px solid blue;
+  padding: 0.5rem;
 }
 
 .blankbox {
@@ -8,24 +12,14 @@
 }
 
 .daybox-todo-number {
+  text-align: center;
   background: red;
+  width: 25px;
   border-radius: 50%;
 }
 
-/* ADD NEW TODO MODAL */
-
-/* .new-todo-modal {
-  position: relative;
-  left: 50%;
-  top: 50%;
-  z-index: 10;
-  top: 0;
-  right: 0;
-  opacity: 0;
-  transition: all 300ms ease;
-} */
-
 .new-modal-bg {
+  display: none;
   position: absolute;
   z-index: 0;
   top: 0;
@@ -38,6 +32,7 @@
 
 .modal-content {
   position: absolute;
+  display: none;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -46,7 +41,6 @@
 
   opacity: 0;
 
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -55,7 +49,34 @@
   background-color: white;
 }
 
+.day-popup {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  justify-content: start;
+  align-items: top;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 300ms ease;
+
+  border-radius: 5px;
+  padding: 1.5rem;
+
+  min-width: 40%;
+  max-height: 80%;
+  overflow: scroll;
+  background-color: rgb(241, 241, 241);
+  opacity: 0;
+}
+
 .modal-visible {
+  display: flex;
+  opacity: 1;
+}
+
+.popup-visible {
+  display: flex;
   opacity: 1;
 }
 
