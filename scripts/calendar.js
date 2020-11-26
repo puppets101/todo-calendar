@@ -106,6 +106,7 @@ function openDayPopup(day, dayPopup) {
     closeModal(dayPopup, modalBg);
   });
 }
+
 // Think of a way to re-write
 function renderTodosInPopup(day, popUpTodoList, dayPopup) {
   for (const todo of todoList) {
