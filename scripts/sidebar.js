@@ -113,10 +113,16 @@ function updateTodaysTodoList() {
   for (const todo of todoList) {
     if (todo.dateId === formatDate(copyDate)) {
       const liItem = document.createElement("li");
+      const exitButton = document.createElement("i");
+      exitButton.classList.add("fas");
+      exitButton.classList.add("fa-times");
+      exitButton.classList.add("text-xl");
+
       liItem.innerText = todo.title;
       liItem.classList.add("todos-list");
-      todaysTodoList.appendChild(liItem);
-      liItem.addEventListener("click", function () {
+      todaysTodoList.appendChild(liItem).appendChild(exitButton);
+
+      exitButton.addEventListener("click", function () {
         removeListItem(todo);
       });
     }
@@ -127,4 +133,5 @@ function removeListItem(todo) {
   const index = todoList.indexOf(todo);
   todoList.splice(index, 1);
   updateTodaysTodoList();
+  populateCalendar();
 }
