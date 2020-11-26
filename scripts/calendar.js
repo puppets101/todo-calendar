@@ -88,10 +88,10 @@ function addDay(day, numberOfTodos, daysArray) {
   dayBox.appendChild(todoPara);
 }
 
-function openDayPopup(day, dayPopup, daysArray) {
+function openDayPopup(day, dayPopup) {
   const popUpTodoList = document.getElementById("popup-todo-list");
   popUpTodoList.innerHTML = "";
-  renderTodosInPopup(day, popUpTodoList);
+  renderTodosInPopup(day, popUpTodoList, dayPopup);
   const modalBg = document.getElementById("modal-bg");
 
   openModal(dayPopup, modalBg);
@@ -106,23 +106,36 @@ function openDayPopup(day, dayPopup, daysArray) {
     closeModal(dayPopup, modalBg);
   });
 }
-
-function renderTodosInPopup(day, popUpTodoList) {
+// Think of a way to re-write
+function renderTodosInPopup(day, popUpTodoList, dayPopup) {
   for (const todo of todoList) {
     if (day.dateId === todo.dateId) {
       const todoTitle = document.createElement("p");
       const todoDescription = document.createElement("p");
       const divider = document.createElement("hr");
+      const deleteTodoButton = document.createElement("i");
+      deleteTodoButton.classList.add("fas");
+      deleteTodoButton.classList.add("fa-times");
+      deleteTodoButton.classList.add("text-xl");
 
       todoTitle.innerText = todo.title;
       todoTitle.classList.add("pb-1");
       divider.classList.add("pb-4");
       todoDescription.innerText = todo.description;
-      popUpTodoList.appendChild(todoTitle);
+      popUpTodoList.appendChild(todoTitle).appendChild(deleteTodoButton);
       popUpTodoList.appendChild(todoDescription);
       popUpTodoList.appendChild(divider);
+      deleteTodoButton.addEventListener("click", function () {
+        removeTodoFromPopup(todo, day, popUpTodoList);
+      });
     }
   }
+}
+
+function removeTodoFromPopup(todo, day, dayPopup) {
+  todoList.splice(todo, 1);
+  openDayPopup(day, dayPopup);
+  populateCalendar();
 }
 
 function addBlank() {
