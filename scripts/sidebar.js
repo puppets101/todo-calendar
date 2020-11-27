@@ -122,6 +122,7 @@ function updateTodaysTodoList() {
 
       deleteButton.addEventListener("click", function () {
         deleteTodo(todo);
+        console.log(todoList);
       });
     }
   }
