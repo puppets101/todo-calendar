@@ -42,7 +42,7 @@ function addTodoEventListeners() {
   openTodoModal.addEventListener("click", function () {
     titleInput.value = "";
     descriptionInput.value = "";
-    dateInput.value = "";
+    dateInput.value = formatDate(new Date());
     openModal(todoModal, modalBg);
   });
 
@@ -56,20 +56,22 @@ function addTodoEventListeners() {
   // EXIT MODAL BACKGROUND
   modalBg.addEventListener("click", function () {
     closeModal(todoModal, modalBg);
-    titleInput.value = "";
   });
-
-  // INPUT FIELD
-  // todoTitleInput.addEventListener("change", function () {
-  //   addNewTodo(this.value);
-  // });
 
   // CREATE TODO ON BUTTON CLICK
   const createTodoButton = document.getElementById("create-todo-button");
   createTodoButton.addEventListener("click", function () {
-    addNewTodo(titleInput.value, descriptionInput.value, dateInput.value);
-    updateTodaysTodoList();
-    closeModal(todoModal, modalBg);
+    const noTitle = "Please add a title";
+
+    if (titleInput.value === "" || titleInput.value === noTitle) {
+      titleInput.classList.add("text-red-500");
+      titleInput.value = noTitle;
+    } else {
+      titleInput.classList.remove("text-red-500");
+      addNewTodo(titleInput.value, descriptionInput.value, dateInput.value);
+      updateTodaysTodoList();
+      closeModal(todoModal, modalBg);
+    }
   });
 
   // CREATE TODO ON ENTER
@@ -100,4 +102,11 @@ function openModal(modal, modalBg) {
 function closeModal(modal, modalBg) {
   modal.classList.remove("modal-visible");
   modalBg.classList.remove("modal-visible");
+}
+
+function deleteTodo(todo) {
+  const index = todoList.indexOf(todo);
+  todoList.splice(index, 1);
+  updateTodaysTodoList();
+  populateCalendar();
 }
