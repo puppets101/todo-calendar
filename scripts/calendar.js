@@ -20,6 +20,19 @@ function calendarEventListeners() {
   });
 }
 
+function populateCalendar() {
+  clearGrid();
+  // clearSwedishHolidays();
+  // fetchSwedishHolidays();
+
+  const currentMonth = startDate.getMonth();
+  const daysArray = getDaysArray(currentMonth);
+
+  const firstDay = daysArray[0].date.getDay();
+
+  appendDayBoxes(firstDay, daysArray);
+}
+
 function handlePreviousClick() {
   startDate.setMonth(startDate.getMonth() - 1);
 
@@ -140,20 +153,6 @@ function addBlank() {
   calendarGrid.appendChild(blankBox);
 }
 
-function populateCalendar() {
-  clearGrid();
-  clearSwedishHolidays();
-  fetchSwedishHolidays();
-  console.log(swedishHolidays);
-
-  const currentMonth = startDate.getMonth();
-  const daysArray = getDaysArray(currentMonth);
-
-  const firstDay = daysArray[0].date.getDay();
-
-  appendDayBoxes(firstDay, daysArray);
-}
-
 function appendDayBoxes(firstDay, daysArray) {
   let dayIndex = 1; // Första cellen i griden motsvarar måndag, vilket är index 1 i daysArray
   let numberOfTodos = 0;
@@ -198,5 +197,7 @@ async function fetchSwedishHolidays() {
 }
 
 function clearSwedishHolidays() {
-  swedishHolidays = [];
+  while (swedishHolidays.length > 0) {
+    swedishHolidays.pop();
+  }
 }
