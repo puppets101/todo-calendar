@@ -1,13 +1,11 @@
-window.addEventListener('load', start);
+window.addEventListener("load", start);
 
 function start() {
   mainEventListeners();
+  todo();
   header();
   sidebar();
   calendar();
-  todo();
 }
 
-function mainEventListeners() {
-
-}
+function mainEventListeners() {}
