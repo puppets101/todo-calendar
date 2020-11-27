@@ -1,5 +1,6 @@
 const date = new Date();
 const startDate = new Date(date.getFullYear(), date.getMonth(), 1);
+let swedishHolidays = [];
 
 function calendar() {
   calendarEventListeners();
@@ -64,30 +65,6 @@ function formatDate(copyDate) {
   return formattedDate;
 }
 
-function addDay(day, numberOfTodos, daysArray) {
-  const calendarGrid = document.getElementById("calendar-grid");
-  const dayPopup = document.getElementById("day-popup");
-  const dayBox = document.createElement("div");
-  const datePara = document.createElement("p");
-  const todoPara = document.createElement("p");
-
-  dayBox.addEventListener("click", function () {
-    openDayPopup(day, dayPopup, daysArray);
-  });
-
-  dayBox.classList.add("daybox");
-  todoPara.classList.add("daybox-todo-number");
-
-  datePara.innerText = day.date.getDate();
-  if (numberOfTodos != 0) {
-    todoPara.innerText = numberOfTodos;
-  }
-
-  calendarGrid.appendChild(dayBox);
-  dayBox.appendChild(datePara);
-  dayBox.appendChild(todoPara);
-}
-
 function openDayPopup(day, dayPopup) {
   const popUpTodoList = document.getElementById("popup-todo-list");
   popUpTodoList.innerHTML = "";
@@ -115,9 +92,7 @@ function renderTodosInPopup(day, popUpTodoList, dayPopup) {
       const todoDescription = document.createElement("p");
       const divider = document.createElement("hr");
       const deleteTodoButton = document.createElement("i");
-      deleteTodoButton.classList.add("fas");
-      deleteTodoButton.classList.add("fa-times");
-      deleteTodoButton.classList.add("text-xl");
+      deleteTodoButton.classList.add("fas", "fa-trash-alt");
 
       todoTitle.innerText = todo.title;
       todoTitle.classList.add("pb-1");
@@ -127,16 +102,35 @@ function renderTodosInPopup(day, popUpTodoList, dayPopup) {
       popUpTodoList.appendChild(todoDescription);
       popUpTodoList.appendChild(divider);
       deleteTodoButton.addEventListener("click", function () {
-        removeTodoFromPopup(todo, day, popUpTodoList);
+        deleteTodo(todo);
+        openDayPopup(day, dayPopup);
       });
     }
   }
 }
 
-function removeTodoFromPopup(todo, day, dayPopup) {
-  todoList.splice(todo, 1);
-  openDayPopup(day, dayPopup);
-  populateCalendar();
+function addDay(day, numberOfTodos, daysArray) {
+  const calendarGrid = document.getElementById("calendar-grid");
+  const dayPopup = document.getElementById("day-popup");
+  const dayBox = document.createElement("div");
+  const datePara = document.createElement("p");
+  const todoPara = document.createElement("p");
+
+  dayBox.addEventListener("click", function () {
+    openDayPopup(day, dayPopup, daysArray);
+  });
+
+  dayBox.classList.add("daybox");
+  todoPara.classList.add("daybox-todo-number");
+
+  datePara.innerText = day.date.getDate();
+  if (numberOfTodos != 0) {
+    todoPara.innerText = numberOfTodos;
+  }
+
+  calendarGrid.appendChild(dayBox);
+  dayBox.appendChild(datePara);
+  dayBox.appendChild(todoPara);
 }
 
 function addBlank() {
@@ -148,6 +142,10 @@ function addBlank() {
 
 function populateCalendar() {
   clearGrid();
+  clearSwedishHolidays();
+  fetchSwedishHolidays();
+  console.log(swedishHolidays);
+
   const currentMonth = startDate.getMonth();
   const daysArray = getDaysArray(currentMonth);
 
@@ -181,4 +179,24 @@ function appendDayBoxes(firstDay, daysArray) {
 function clearGrid() {
   const calendarGrid = document.getElementById("calendar-grid");
   calendarGrid.innerHTML = "";
+}
+
+async function fetchSwedishHolidays() {
+  const dataPath =
+    "http://sholiday.faboul.se/dagar/v2.1/" +
+    startDate.getFullYear() +
+    "/" +
+    (startDate.getMonth() + 1);
+  const result = await fetch(dataPath);
+  const response = await result.json();
+
+  for (let i = 0; i < response.dagar.length; i++) {
+    if (response.dagar[i].helgdag) {
+      swedishHolidays.push(response.dagar[i]);
+    }
+  }
+}
+
+function clearSwedishHolidays() {
+  swedishHolidays = [];
 }

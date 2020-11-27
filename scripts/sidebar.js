@@ -113,25 +113,16 @@ function updateTodaysTodoList() {
   for (const todo of todoList) {
     if (todo.dateId === formatDate(copyDate)) {
       const liItem = document.createElement("li");
-      const exitButton = document.createElement("i");
-      exitButton.classList.add("fas");
-      exitButton.classList.add("fa-times");
-      exitButton.classList.add("text-xl");
+      const deleteButton = document.createElement("i");
+      deleteButton.classList.add("fas", "fa-trash-alt");
 
       liItem.innerText = todo.title;
       liItem.classList.add("todos-list");
-      todaysTodoList.appendChild(liItem).appendChild(exitButton);
+      todaysTodoList.appendChild(liItem).appendChild(deleteButton);
 
-      exitButton.addEventListener("click", function () {
-        removeListItem(todo);
+      deleteButton.addEventListener("click", function () {
+        deleteTodo(todo);
       });
     }
   }
-}
-
-function removeListItem(todo) {
-  const index = todoList.indexOf(todo);
-  todoList.splice(index, 1);
-  updateTodaysTodoList();
-  populateCalendar();
 }

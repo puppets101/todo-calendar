@@ -22,7 +22,7 @@
     <!-- SIDEBAR -->
     <aside class="h-full w-64 p-3">
       <div class="py-2 flex justify-center">Title goes here!</div>
-      <div class="flex flex-col justify-between h-full">
+      <div class="flex flex-col justify-between">
         <div class="flex flex-col">
           <div class="bg-gray my-10 font-extrabold text-center">
             <h3 id="month-clock"></h3>
@@ -100,11 +100,12 @@
           <h2 class="text-xl">Create new todo</h2>
           <label for="title">Todo Title</label>
           <input
-            class="border-b-2 mb-3"
+            class="border-b-2 mb-3 focus:text-black"
             id="todo-title"
             type="text"
-            value=""
             name="title"
+            onfocus="this.value=''"
+            value=""
           />
           <label for="desciption">Description</label>
           <textarea
@@ -113,7 +114,6 @@
             cols="30"
             rows="5"
             type="text"
-            value=""
             name="description"
           ></textarea>
           <label for="todo-date">Choose date</label>
@@ -121,7 +121,6 @@
             class="border-b-2 mb-3"
             id="todo-date"
             type="date"
-            value=""
             name="todo-date"
           />
           <button type="submit" id="create-todo-button" class="border-2 m-2">
