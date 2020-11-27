@@ -1,6 +1,5 @@
 const date = new Date();
 const startDate = new Date(date.getFullYear(), date.getMonth(), 1);
-let swedishHolidays = [];
 
 function calendar() {
   calendarEventListeners();
@@ -23,7 +22,6 @@ function calendarEventListeners() {
 function populateCalendar() {
   clearGrid();
   // clearSwedishHolidays();
-  // fetchSwedishHolidays();
 
   const currentMonth = startDate.getMonth();
   const daysArray = getDaysArray(currentMonth);
@@ -31,6 +29,7 @@ function populateCalendar() {
   const firstDay = daysArray[0].date.getDay();
 
   appendDayBoxes(firstDay, daysArray);
+  fetchSwedishHolidays();
 }
 
 function handlePreviousClick() {
@@ -134,6 +133,7 @@ function addDay(day, numberOfTodos, daysArray) {
   });
 
   dayBox.classList.add("daybox");
+  dayBox.id = day.dateId;
   todoPara.classList.add("daybox-todo-number");
 
   datePara.innerText = day.date.getDate();
@@ -190,8 +190,12 @@ async function fetchSwedishHolidays() {
   const response = await result.json();
 
   for (let i = 0; i < response.dagar.length; i++) {
-    if (response.dagar[i].helgdag) {
-      swedishHolidays.push(response.dagar[i]);
+    const holiday = response.dagar[i].helgdag;
+    if (holiday) {
+      const date = response.dagar[i].datum;
+      const dayBox = document.getElementById(date);
+      console.log(holiday, date, dayBox);
+      dayBox.append(holiday);
     }
   }
 }

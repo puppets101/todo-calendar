@@ -1,9 +1,8 @@
-oa;
 /**
  * @param {Array<Object>} todo dateId, title, description
  */
-const todoList = [
-  d /*
+let todoList = [
+  /*
   {
     dateId: "2020-11-25",
     title: "Wash clothes",
@@ -25,12 +24,11 @@ const todoList = [
     title: "clean new years mess",
     description: "clean god dammit'",
   },
-  */,
+  */
 ];
 
 function todo() {
   addTodoEventListeners();
-  getTodosFromLs();
   console.log(todoList);
 }
 
@@ -90,24 +88,18 @@ function addTodoEventListeners() {
 }
 
 function getTodosFromLs() {
-  for (let i = 0; i < localStorage.length; i++) {
-    todoList.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-  }
+  todoList = JSON.parse(localStorage.getItem("todoList")) || [];
 }
 
 function addNewTodo(titleInput, descriptionInput, dateInput) {
-  const id = String(Math.random() * 100); // This means, you can create a zillion todos without conflicts!
-
   const todoObject = {
     title: titleInput,
     description: descriptionInput,
     dateId: dateInput,
-    todoId: id,
   };
 
   todoList.push(todoObject);
-  todoObjectAsString = JSON.stringify(todoObject);
-  localStorage.setItem(todoObject.todoId, todoObjectAsString);
+  localStorage.setItem("todoList", JSON.stringify(todoList));
   populateCalendar();
 }
 
@@ -124,7 +116,7 @@ function closeModal(modal, modalBg) {
 function deleteTodo(todo) {
   const index = todoList.indexOf(todo);
   todoList.splice(index, 1);
-  localStorage.removeItem(todo.todoId);
+  localStorage.setItem("todoList", JSON.stringify(todoList));
   updateTodaysTodoList();
   populateCalendar();
 }
