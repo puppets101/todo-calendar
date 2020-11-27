@@ -182,7 +182,7 @@ function clearGrid() {
 
 async function fetchSwedishHolidays() {
   const dataPath =
-    "http://sholiday.faboul.se/dagar/v2.1/" +
+    "https://sholiday.faboul.se/dagar/v2.1/" +
     startDate.getFullYear() +
     "/" +
     (startDate.getMonth() + 1);
