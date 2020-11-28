@@ -1,14 +1,24 @@
+button:focus {
+  outline: none;
+}
+
 .daybox {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   background: white;
-  border: 1px solid blue;
+  border: 1px solid black;
   padding: 0.5rem;
+  transition: all 300ms ease;
+}
+
+.daybox:hover {
+  box-shadow: 1px 2px black;
+  transform: scale(1.05);
 }
 
 .blankbox {
-  background-color: grey;
+  background-color: transparent;
 }
 
 .daybox-todo-number {
@@ -26,20 +36,17 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.603);
+  transition: all 500ms ease;
   opacity: 0;
-  transition: all 300ms ease;
 }
 
 .modal-content {
   position: absolute;
   display: none;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  left: 35%;
+  top: 15%;
+  transform: translate(-25%, -25%);
   z-index: 10;
-  transition: all 300ms ease;
-
-  opacity: 0;
 
   flex-direction: column;
   justify-content: center;
@@ -47,6 +54,9 @@
   border-radius: 5px;
   padding: 1.5rem;
   background-color: white;
+  transform: scale(0);
+  transition: all 500ms ease;
+  opacity: 0;
 }
 
 .day-popup {
@@ -55,14 +65,15 @@
   flex-direction: column;
   justify-content: start;
   align-items: top;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  transition: all 300ms ease;
+  left: 30%;
+  top: 15%;
+  transform: translate(-25%, -25%);
+  transition: all 500ms ease;
 
   border-radius: 5px;
   padding: 1rem 1.5rem;
 
+  transform: scale(0);
   min-width: 40%;
   max-height: 80%;
   overflow: scroll;
@@ -72,8 +83,15 @@
 
 .modal-visible {
   display: flex;
+}
+.modal-opacity {
   opacity: 1;
 }
+.modal-size {
+  transform: scale(1);
+}
+
+/* ANIMATIONS */
 
 /* SIDEBAR */
 .todos-list {
