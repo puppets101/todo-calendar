@@ -69,8 +69,11 @@ function addTodoEventListeners() {
     if (titleInput.value === "" || titleInput.value === noTitle) {
       titleInput.classList.add("text-red-500");
       titleInput.value = noTitle;
+      titleInput.onfocus = function () {
+        titleInput.classList.remove("text-red-500");
+        titleInput.value = "";
+      };
     } else {
-      titleInput.classList.remove("text-red-500");
       addNewTodo(titleInput.value, descriptionInput.value, dateInput.value);
       updateTodaysTodoList();
       closeModal(todoModal, modalBg);

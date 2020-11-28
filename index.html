@@ -12,49 +12,18 @@
     />
     <link rel="stylesheet" href="./build/tailwindcss-output.css" />
     <link rel="stylesheet" href="./src/style.css" />
+    <link rel="stylesheet" href="./src/media-queries.css" />
     <script src="./scripts/main.js"></script>
     <script src="./scripts/header.js"></script>
     <script src="./scripts/sidebar.js"></script>
     <script src="./scripts/calendar.js"></script>
     <script src="./scripts/todo.js"></script>
   </head>
-  <body class="bg-gray-400 min-h-screen flex">
-    <!-- SIDEBAR -->
-    <aside class="h-full w-64 p-3">
-      <div class="py-2 flex justify-center">Title goes here!</div>
-      <div class="flex flex-col justify-between">
-        <div class="flex flex-col">
-          <div class="bg-gray my-10 font-extrabold text-center">
-            <h3 id="month-clock"></h3>
-            <h2 id="weekday-clock"></h2>
-            <h2 id="time-clock"></h2>
-            <h3 id="year-clock"></h3>
-          </div>
-          <!-- TODAYS TODOS LIST -->
-          <div class="my-10">
-            <h4 class="font-bold text-center mb-2">To do today:</h4>
-            <ul id="sidebar-todays-todos">
-              <!-- Code injected from JavaScript -->
-            </ul>
-          </div>
-          <button
-            id="add-todo-button"
-            class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-6 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-          >
-            New Todo
-          </button>
-        </div>
-        <div class="py-4 flex flex-col">
-          <h2 class="py-1 italic">* Todos</h2>
-          <h2 class="py-1 italic">* Svenska helgdagar</h2>
-        </div>
-      </div>
-    </aside>
-
-    <!-- END SIDEBAR -->
-    <div class="flex flex-col flex-1">
-      <!-- HEADER START -->
-      <header class="bg-gray-600 p-4 flex justify-between">
+  <body class="bg-gray-400 min-h-screen">
+    <!-- HEADER START -->
+    <header class="bg-gray-600 p-4 flex justify-between">
+      <div class="title w-64 flex justify-center">Title goes here!</div>
+      <div class="flex flex-1 justify-between">
         <!-- PREVIOUS MONTH START -->
         <div>
           <button class="text-black rounded-l px-1 hover:text-gray-800">
@@ -75,11 +44,46 @@
             <i class="fas fa-chevron-right p-1"></i>
           </button>
         </div>
-        <!-- END NEXT MONTH -->
-      </header>
-      <!-- END HEADER -->
+      </div>
+      <!-- END NEXT MONTH -->
+    </header>
+    <!-- END HEADER -->
 
-      <main class="bg-gray-500 p-3 h-full relative flex flex-col">
+    <div style="height: calc(100vh - 56px)" class="flex flex-1">
+      <!-- SIDEBAR -->
+      <aside class="h-full w-64 p-3">
+        <div class="flex flex-col justify-between">
+          <div class="flex flex-col">
+            <div class="bg-gray my-10 font-extrabold text-center">
+              <h3 id="month-clock"></h3>
+              <h2 id="weekday-clock"></h2>
+              <h2 id="time-clock"></h2>
+              <h3 id="year-clock"></h3>
+            </div>
+            <!-- TODAYS TODOS LIST -->
+            <div class="my-10">
+              <h4 class="font-bold text-center mb-2">To do today:</h4>
+              <ul id="sidebar-todays-todos">
+                <!-- Code injected from JavaScript -->
+              </ul>
+            </div>
+            <button
+              id="add-todo-button"
+              class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-6 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+            >
+              New Todo
+            </button>
+          </div>
+          <div class="py-4 flex flex-col">
+            <h2 class="py-1 italic">* Todos</h2>
+            <h2 class="py-1 italic">* Svenska helgdagar</h2>
+          </div>
+        </div>
+      </aside>
+
+      <!-- END SIDEBAR -->
+
+      <main class="bg-gray-500 p-3 h-full flex-1 relative flex flex-col">
         <div class="grid grid-cols-7 text-center">
           <div class="bg-white">Monday</div>
           <div>Tuesday</div>
@@ -104,7 +108,6 @@
             id="todo-title"
             type="text"
             name="title"
-            onfocus="this.value=''"
             value=""
           />
           <label for="desciption">Description</label>
