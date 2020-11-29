@@ -44,22 +44,34 @@ function populateCalendar() {
  * Helper function for animations and rendering previous month
  */
 function handlePreviousClick() {
+  const calendarGrid = document.getElementById("calendar-grid");
+
+  const headerElements = document.querySelectorAll(".header-element");
+
   startDate.setMonth(startDate.getMonth() - 1);
 
   // Declared in header.js
   renderMonthsInHeader();
   populateCalendar();
+  runPrevMonthAnimation(calendarGrid, 500);
+  runHeaderAnimation(headerElements, 500);
 }
 
 /**
  * Helper function for animations and rendering next month
  */
 function handleNextClick() {
+  const calendarGrid = document.getElementById("calendar-grid");
+
+  const headerElements = document.querySelectorAll(".header-element");
+
   startDate.setMonth(startDate.getMonth() + 1);
 
   // Declared in header.js
   renderMonthsInHeader();
   populateCalendar();
+  runHeaderAnimation(headerElements, 500);
+  runNextMonthAnimation(calendarGrid, 500);
 }
 
 /**
@@ -106,16 +118,17 @@ function formatDate(copyDate) {
  */
 function openDayPopup(day, dayPopup) {
   const popUpTodoList = document.getElementById("popup-todo-list");
-  popUpTodoList.innerHTML = "";
-  renderTodosInPopup(day, popUpTodoList, dayPopup);
   const modalBg = document.getElementById("modal-bg");
+  const exitButton = document.getElementById("exit-day-popup");
 
-  openModal(dayPopup, modalBg);
   const dayPopupDate = document.getElementById("popup-date");
+  popUpTodoList.innerHTML = "No todos on this day yet!";
   dayPopupDate.innerText = getMonthString(day.date);
 
-  const exitButton = document.getElementById("exit-day-popup");
-  exitButton.addEventListener("click", () => {
+  renderTodosInPopup(day, popUpTodoList, dayPopup);
+  openModal(dayPopup, modalBg);
+
+  exitButton.addEventListener("click", function () {
     closeModal(dayPopup, modalBg);
   });
   modalBg.addEventListener("click", function () {
@@ -132,22 +145,33 @@ function openDayPopup(day, dayPopup) {
 function renderTodosInPopup(day, popUpTodoList, dayPopup) {
   for (const todo of todoList) {
     if (day.dateId === todo.dateId) {
+      popUpTodoList.innerHTML = "";
+      const todoWrapper = document.createElement("div");
       const todoTitle = document.createElement("p");
       const todoDescription = document.createElement("p");
       const divider = document.createElement("hr");
       const deleteTodoButton = document.createElement("i");
-      deleteTodoButton.classList.add("fas", "fa-trash-alt");
 
       todoTitle.innerText = todo.title;
-      todoTitle.classList.add("pb-1");
-      divider.classList.add("pb-4");
       todoDescription.innerText = todo.description;
-      popUpTodoList.appendChild(todoTitle).appendChild(deleteTodoButton);
-      popUpTodoList.appendChild(todoDescription);
+
+      todoTitle.classList.add("pb-1", "flex", "justify-between");
+      divider.classList.add("pb-4");
+      deleteTodoButton.classList.add("fas", "fa-trash-alt", "cursor-pointer");
+
+      popUpTodoList
+        .appendChild(todoWrapper)
+        .appendChild(todoTitle)
+        .appendChild(deleteTodoButton);
+      todoWrapper.appendChild(todoDescription);
       popUpTodoList.appendChild(divider);
+
       deleteTodoButton.addEventListener("click", function () {
-        deleteTodo(todo);
-        openDayPopup(day, dayPopup);
+        runDeleteTodoAnimation(todoWrapper, 700);
+        setTimeout(() => {
+          deleteTodo(todo);
+          openDayPopup(day, dayPopup);
+        }, 600);
       });
     }
   }
