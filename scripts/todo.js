@@ -51,9 +51,7 @@ function addTodoEventListeners() {
 
   // EXIT MODAL BUTTON
   exitModalButton.addEventListener("click", function () {
-    todoModal.classList.remove("modal-visible");
-    modalBg.classList.remove("modal-visible");
-    titleInput.value = "";
+    closeModal(todoModal, modalBg);
   });
 
   // EXIT MODAL BACKGROUND
@@ -108,12 +106,20 @@ function addNewTodo(titleInput, descriptionInput, dateInput) {
 
 function openModal(modal, modalBg) {
   modal.classList.add("modal-visible");
-  modalBg.classList.add("modal-visible");
+  modalBg.classList.add("modal-visible", "modal-opacity");
+  setTimeout(function () {
+    modal.classList.add("modal-opacity", "modal-size");
+  }, 100);
 }
 
 function closeModal(modal, modalBg) {
-  modal.classList.remove("modal-visible");
-  modalBg.classList.remove("modal-visible");
+  modal.classList.remove("modal-opacity", "modal-size");
+  modalBg.classList.remove("modal-opacity");
+  setTimeout(function () {
+    modal.classList.remove("modal-visible");
+    modalBg.classList.remove("modal-visible");
+  }, 200);
+  clearTimeout();
 }
 
 function deleteTodo(todo) {

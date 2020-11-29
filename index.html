@@ -18,6 +18,7 @@
     <script src="./scripts/sidebar.js"></script>
     <script src="./scripts/calendar.js"></script>
     <script src="./scripts/todo.js"></script>
+    <script src="./scripts/animations.js"></script>
   </head>
   <body class="bg-gray-400 min-h-screen">
     <!-- HEADER START -->
@@ -26,7 +27,9 @@
       <div class="flex flex-1 justify-between">
         <!-- PREVIOUS MONTH START -->
         <div>
-          <button class="text-black rounded-l px-1 hover:text-gray-800">
+          <button
+            class="text-black rounded-l px-1 hover:text-gray-800 header-element w-32 text-left"
+          >
             <i class="fas fa-chevron-left p-1"></i>
             <span id="previous-month"></span>
           </button>
@@ -34,12 +37,17 @@
         <!-- END PREVIOUS MONTH -->
 
         <!-- CURRENT MONTH START -->
-        <div id="current-month" class="text-black px-1"></div>
+        <div
+          id="current-month"
+          class="text-black px-1 header-element w-36"
+        ></div>
         <!-- END CURRENT MONTH -->
 
         <!-- NEXT MONTH START -->
         <div class="">
-          <button class="text-black rounded-l px-1 hover:text-gray-800">
+          <button
+            class="text-black rounded-l px-1 hover:text-gray-800 header-element w-32 text-right"
+          >
             <span id="next-month"></span>
             <i class="fas fa-chevron-right p-1"></i>
           </button>
@@ -83,7 +91,9 @@
 
       <!-- END SIDEBAR -->
 
-      <main class="bg-gray-500 p-3 h-full flex-1 relative flex flex-col">
+      <main
+        class="bg-gray-500 p-3 h-full flex-1 relative flex flex-col overflow-hidden"
+      >
         <div class="grid grid-cols-7 text-center">
           <div class="bg-white">Monday</div>
           <div>Tuesday</div>
@@ -93,6 +103,7 @@
           <div>Saturday</div>
           <div class="bg-white">Sunday</div>
         </div>
+        <hr class="pb-1" />
 
         <div
           id="calendar-grid"
@@ -109,6 +120,7 @@
             type="text"
             name="title"
             value=""
+            autocomplete="off"
           />
           <label for="desciption">Description</label>
           <textarea
