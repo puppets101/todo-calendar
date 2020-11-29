@@ -1,12 +1,13 @@
 window.addEventListener("load", start);
 
+/**
+ * Runs on load and starts the program
+ */
 function start() {
-  mainEventListeners();
   getTodosFromLs();
-  todo();
-  header();
-  sidebar();
+  addTodoEventListeners();
+  renderClockInSidebar();
+  setInterval(renderClockInSidebar, 1000);
+  updateTodaysTodoList();
   calendar();
 }
-
-function mainEventListeners() {}

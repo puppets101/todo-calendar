@@ -1,37 +1,11 @@
 /**
  * @param {Array<Object>} todo dateId, title, description
  */
-let todoList = [
-  /*
-  {
-    dateId: "2020-11-25",
-    title: "Wash clothes",
-    description:
-      "Hej jag heter herman och jag kommer från växjö bla bla bla bla bla bla bla bla ",
-  },
-  {
-    dateId: "2020-11-25",
-    title: "clean apartment",
-    description: "Remember to vacuum and wipe floors",
-  },
-  {
-    dateId: "2020-11-20",
-    title: "Mow the lawn",
-    description: "Use the lawnmower",
-  },
-  {
-    dateId: "2021-01-10",
-    title: "clean new years mess",
-    description: "clean god dammit'",
-  },
-  */
-];
+let todoList = [];
 
-function todo() {
-  addTodoEventListeners();
-  console.log(todoList);
-}
-
+/**
+ * Initiate eventlisteners for todo.js file
+ */
 function addTodoEventListeners() {
   const openTodoModal = document.getElementById("add-todo-button");
   const todoModal = document.getElementById("new-todo-modal");
@@ -41,7 +15,7 @@ function addTodoEventListeners() {
   const modalBg = document.getElementById("modal-bg");
   const exitModalButton = document.getElementById("exit-modal-button");
 
-  // OPEN MODAL BUTTON
+  // OPEN CREATE TODO MODAL BUTTON
   openTodoModal.addEventListener("click", function () {
     titleInput.value = "";
     descriptionInput.value = "";
@@ -49,19 +23,19 @@ function addTodoEventListeners() {
     openModal(todoModal, modalBg);
   });
 
-  // EXIT MODAL BUTTON
+  // EXIT CREATE TODO MODAL BUTTON
   exitModalButton.addEventListener("click", function () {
     todoModal.classList.remove("modal-visible");
     modalBg.classList.remove("modal-visible");
     titleInput.value = "";
   });
 
-  // EXIT MODAL BACKGROUND
+  // EXIT CREATE TODO MODAL BACKGROUND
   modalBg.addEventListener("click", function () {
     closeModal(todoModal, modalBg);
   });
 
-  // CREATE TODO ON BUTTON CLICK
+  // CREATE TODO ON BUTTON CLICK + ERROR HANDLING
   const createTodoButton = document.getElementById("create-todo-button");
   createTodoButton.addEventListener("click", function () {
     const noTitle = "Please add a title";
@@ -79,21 +53,26 @@ function addTodoEventListeners() {
       closeModal(todoModal, modalBg);
     }
   });
-
-  // CREATE TODO ON ENTER
-  // add if for checking if modal is open
-  // todoTitleInput.addEventListener("keyup", function (event) {
-  //   if (event.key === "Enter") {
-  //     updateTodoList();
-  //     closeModal(todoModal, modalBg);
-  //   }
-  // });
 }
 
+/**
+ * Runs on load and saves all todos from local storage to the dateList array
+ */
 function getTodosFromLs() {
-  todoList = JSON.parse(localStorage.getItem("todoList")) || [];
+  try {
+    todoList = JSON.parse(localStorage.getItem("todoList")) || [];
+  } catch (error) {
+    console.error("error parsing todolist in LS");
+    todolist = [];
+  }
 }
 
+/**
+ * pushes a todo object to the todo array and saves the array to local storage
+ * @param {String} titleInput Todo title in add new todo modal
+ * @param {String} descriptionInput Todo description in add new todo modal
+ * @param {String} dateInput Todo date in add new todo modal
+ */
 function addNewTodo(titleInput, descriptionInput, dateInput) {
   const todoObject = {
     title: titleInput,
@@ -106,16 +85,30 @@ function addNewTodo(titleInput, descriptionInput, dateInput) {
   populateCalendar();
 }
 
+/**
+ * Sets the create new todo modal to visible
+ * @param {HTMLElement} modal Create new todo modal
+ * @param {HTMLElement} modalBg Calendar background
+ */
 function openModal(modal, modalBg) {
   modal.classList.add("modal-visible");
   modalBg.classList.add("modal-visible");
 }
 
+/**
+ * Sets the create new todo modal to hidden
+ * @param {HTMLElement} modal Create new todo modal
+ * @param {HTMLElement} modalBg Calendar background
+ */
 function closeModal(modal, modalBg) {
   modal.classList.remove("modal-visible");
   modalBg.classList.remove("modal-visible");
 }
 
+/**
+ * Removes a todo object from the todo array and saves the array to local storage
+ * @param {Array<Object} todo dateId, title, description
+ */
 function deleteTodo(todo) {
   const index = todoList.indexOf(todo);
   todoList.splice(index, 1);
