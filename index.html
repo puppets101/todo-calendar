@@ -20,11 +20,11 @@
     <script src="./scripts/todo.js"></script>
     <script src="./scripts/animations.js"></script>
   </head>
-  <body class="bg-gray-400 min-h-screen">
+  <body class="bg-gray-400 h-full flex flex-col flex-1">
     <!-- HEADER START -->
-    <header class="bg-gray-600 p-4 flex justify-between items-center">
-      <div class="title w-64 flex justify-center">Title goes here!</div>
-      <div class="hamburger-div">
+    <header class="bg-gray-600 p-2 flex justify-between items-center">
+      <div class="title w-64 italie pt-1 text-3xl leading-none">ToDo</div>
+      <div class="hamburger-div hidden">
         <button class="hamburger-btn text-1xl">
           <i class="fas fa-bars"></i>
         </button>
@@ -62,16 +62,20 @@
     </header>
     <!-- END HEADER -->
 
-    <div style="height: calc(100vh - 56px)" class="flex flex-1">
+    <div class="flex flex-1 main-container">
       <!-- SIDEBAR -->
       <aside class="h-full w-64 p-3">
         <div class="flex flex-col justify-between">
           <div class="flex flex-col">
-            <div class="bg-gray my-10 font-extrabold text-center">
-              <h3 id="month-clock"></h3>
-              <h2 id="weekday-clock"></h2>
-              <h2 id="time-clock"></h2>
-              <h3 id="year-clock"></h3>
+            <div class="bg-gray flex items-start justify-evenly">
+              <div class="bg-white border-2 border-black rounded leading-snug">
+                <h2 id="sidebar-time" class="p-2 text-xl"></h2>
+              </div>
+              <div class="border-2 border-red-600 rounded bg-white text-center">
+                <h3 id="sidebar-month" class="p-1 bg-red-600"></h3>
+                <h3 id="sidebar-date" class="text-4xl leading-snug"></h3>
+                <h2 id="sidebar-weekday" class="text-xs"></h2>
+              </div>
             </div>
             <!-- TODAYS TODOS LIST -->
             <div class="my-10">
@@ -97,7 +101,7 @@
       <!-- END SIDEBAR -->
 
       <main
-        class="bg-gray-500 p-3 h-full flex-1 relative flex flex-col overflow-hidden"
+        class="bg-gray-500 p-3 w-full h-full relative flex flex-col overflow-hidden"
       >
         <div class="grid grid-cols-7 text-center">
           <div class="bg-white">Monday</div>

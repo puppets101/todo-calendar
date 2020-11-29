@@ -123,7 +123,7 @@ function openDayPopup(day, dayPopup) {
 
   const dayPopupDate = document.getElementById("popup-date");
   popUpTodoList.innerHTML = "No todos on this day yet!";
-  dayPopupDate.innerText = getMonthString(day.date);
+  dayPopupDate.innerText = formatMonthString(day.date);
 
   renderTodosInPopup(day, popUpTodoList, dayPopup);
   openModal(dayPopup, modalBg);
