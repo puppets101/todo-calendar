@@ -95,6 +95,8 @@ button:focus {
 
 /* SIDEBAR */
 .todos-list {
+  display: flex;
+  justify-content: space-between;
   list-style-type: square;
   text-align: left;
   margin: 0 2rem;

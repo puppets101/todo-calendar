@@ -34,23 +34,30 @@ function populateCalendar() {
 
 function handlePreviousClick() {
   const calendarGrid = document.getElementById("calendar-grid");
-  runPrevMonthAnimation(calendarGrid, 500);
+
+  const headerElements = document.querySelectorAll(".header-element");
+
   startDate.setMonth(startDate.getMonth() - 1);
 
   // Declared in header.js
   renderMonthsInHeader();
   populateCalendar();
+  runPrevMonthAnimation(calendarGrid, 500);
+  runHeaderAnimation(headerElements, 500);
 }
 
 function handleNextClick() {
   const calendarGrid = document.getElementById("calendar-grid");
-  runNextMonthAnimation(calendarGrid, 500);
+
+  const headerElements = document.querySelectorAll(".header-element");
 
   startDate.setMonth(startDate.getMonth() + 1);
 
   // Declared in header.js
   renderMonthsInHeader();
   populateCalendar();
+  runHeaderAnimation(headerElements, 500);
+  runNextMonthAnimation(calendarGrid, 500);
 }
 
 function getDaysArray(currentMonth) {
@@ -107,22 +114,32 @@ function renderTodosInPopup(day, popUpTodoList, dayPopup) {
   for (const todo of todoList) {
     if (day.dateId === todo.dateId) {
       popUpTodoList.innerHTML = "";
+      const todoWrapper = document.createElement("div");
       const todoTitle = document.createElement("p");
       const todoDescription = document.createElement("p");
       const divider = document.createElement("hr");
       const deleteTodoButton = document.createElement("i");
-      deleteTodoButton.classList.add("fas", "fa-trash-alt");
 
       todoTitle.innerText = todo.title;
-      todoTitle.classList.add("pb-1");
-      divider.classList.add("pb-4");
       todoDescription.innerText = todo.description;
-      popUpTodoList.appendChild(todoTitle).appendChild(deleteTodoButton);
-      popUpTodoList.appendChild(todoDescription);
+
+      todoTitle.classList.add("pb-1", "flex", "justify-between");
+      divider.classList.add("pb-4");
+      deleteTodoButton.classList.add("fas", "fa-trash-alt", "cursor-pointer");
+
+      popUpTodoList
+        .appendChild(todoWrapper)
+        .appendChild(todoTitle)
+        .appendChild(deleteTodoButton);
+      todoWrapper.appendChild(todoDescription);
       popUpTodoList.appendChild(divider);
+
       deleteTodoButton.addEventListener("click", function () {
-        deleteTodo(todo);
-        openDayPopup(day, dayPopup);
+        runDeleteTodoAnimation(todoWrapper, 700);
+        setTimeout(() => {
+          deleteTodo(todo);
+          openDayPopup(day, dayPopup);
+        }, 600);
       });
     }
   }
