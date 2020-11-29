@@ -1,34 +1,41 @@
-function sidebar() {
-  updateClock();
-  setInterval(updateClock, 1000);
-  loadTodos();
+/**
+ * Runs on load and calls sidebar functions
+ */
+function renderClockInSidebar() {
+  renderYear(date);
+  renderMonth(date);
+  renderWeekday(date);
+  renderTime(date);
 }
 
-function updateClock() {
-  updateYear(date);
-  updateMonth(date);
-  updateWeekday(date);
-  updateTime(date);
-}
-
-// Year
-function updateYear(date) {
+/**
+ * Render current year in sidebar
+ * @param {Date} date
+ */
+function renderYear(date) {
   const year = document.getElementById("year-clock");
   year.innerText = date.getFullYear();
 }
 
-// Date and Month
-function updateMonth(date) {
+/**
+ * Render current month in sidebar
+ * @param {Date} date
+ */
+function renderMonth(date) {
   const month = document.getElementById("month-clock");
-  month.innerText = getMonthString(date);
+  month.innerText = formatMonthString(date);
 }
 
-function getMonthString(date) {
+/**
+ * formats the dateobject to return day + month in a string
+ * @param {Date} date
+ */
+function formatMonthString(date) {
   const dayOfMonth = date.getDate();
   const monthIndex = date.getMonth();
 
   let prefix = dayOfMonth + " ";
-  prefix = formatDateValue(dayOfMonth + " ");
+  prefix = formatDateString(dayOfMonth + " ");
 
   switch (monthIndex) {
     case 0:
@@ -58,13 +65,20 @@ function getMonthString(date) {
   }
 }
 
-// Weekday
-function updateWeekday(date) {
+/**
+ * Renders current weekday in sidebar
+ * @param {Date} date
+ */
+function renderWeekday(date) {
   const weekday = document.getElementById("weekday-clock");
-  weekday.innerText = getWeekdayString(date);
+  weekday.innerText = formatWeekDay(date);
 }
 
-function getWeekdayString(date) {
+/**
+ * Returns current day of the week index as a string
+ * @param {Date} date
+ */
+function formatWeekDay(date) {
   const weekdayIndex = date.getDay();
   switch (weekdayIndex) {
     case 0:
@@ -84,27 +98,33 @@ function getWeekdayString(date) {
   }
 }
 
-// Time
-function updateTime(date) {
+/**
+ * Render current time in sidebar
+ * @param {Date} date
+ */
+function renderTime(date) {
   const time = document.getElementById("time-clock");
   let hours = date.getHours();
   let minutes = date.getMinutes();
-  hours = formatDateValue(hours);
-  minutes = formatDateValue(minutes);
+  hours = formatDateString(hours);
+  minutes = formatDateString(minutes);
   time.innerText = hours + ":" + minutes;
 }
 
-function formatDateValue(value) {
+/**
+ * Helper function returning a formatted date string
+ * @param {Date} value
+ */
+function formatDateString(value) {
   if (value < 10) {
     return "0" + value;
   }
   return value;
 }
 
-function loadTodos() {
-  updateTodaysTodoList();
-}
-
+/**
+ * Render todos for the day in a list in sidebar
+ */
 function updateTodaysTodoList() {
   const copyDate = new Date(date);
   const todaysTodoList = document.getElementById("sidebar-todays-todos");

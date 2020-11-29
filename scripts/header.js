@@ -1,5 +1,6 @@
-function header() {}
-
+/**
+ * renders previous, current, and next month in header
+ */
 function renderMonthsInHeader() {
   const previousMonthText = document.getElementById("previous-month");
   const currentMonthBox = document.getElementById("current-month");
