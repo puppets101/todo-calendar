@@ -28,7 +28,11 @@ textarea {
 }
 
 .title {
-  width: 13rem;
+  width: 15rem;
+}
+
+.short-text {
+  display: none;
 }
 
 .btn {
@@ -60,7 +64,10 @@ textarea {
 }
 
 .daybox {
+  position: relative;
   display: flex;
+  flex-direction: column;
+
   justify-content: space-between;
   align-items: baseline;
   color: white;
@@ -80,6 +87,10 @@ textarea {
 }
 
 .daybox-todo-number {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+
   text-align: center;
   background: red;
   width: 25px;
@@ -101,8 +112,6 @@ textarea {
 .modal-content {
   position: absolute;
   display: none;
-  left: 35%;
-  top: 15%;
   transform: translate(-25%, -25%);
   z-index: 10;
 
@@ -122,8 +131,6 @@ textarea {
   display: none;
   flex-direction: column;
   justify-content: start;
-  left: 30%;
-  top: 15%;
   transform: translate(-25%, -25%);
   transition: all 500ms ease;
 
@@ -162,11 +169,6 @@ textarea {
 textarea:focus,
 input:focus {
   outline: none;
-}
-
-.todo-delete-btn {
-  position: absolute;
-  right: 0;
 }
 
 .next-month,

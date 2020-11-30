@@ -293,9 +293,12 @@ async function renderSwedishHolidays() {
   for (let i = 0; i < result.dagar.length; i++) {
     const holiday = result.dagar[i].helgdag;
     if (holiday) {
+      const holidayPara = document.createElement("p");
+      holidayPara.classList.add("text-red-600", "holiday-para");
+      holidayPara.innerText = holiday;
       const date = result.dagar[i].datum;
       const dayBox = document.getElementById(date);
-      dayBox.append(holiday);
+      dayBox.append(holidayPara);
     }
   }
 }
