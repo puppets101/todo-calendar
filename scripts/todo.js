@@ -14,9 +14,10 @@ function addTodoEventListeners() {
   const dateInput = document.getElementById("todo-date");
   const modalBg = document.getElementById("modal-bg");
   const exitModalButton = document.getElementById("exit-modal-button");
-
+  const modalTitle = document.getElementById("modal-title");
   // OPEN CREATE TODO MODAL BUTTON
   openTodoModal.addEventListener("click", function () {
+    modalTitle.innerText = "Create New Todo";
     titleInput.value = "";
     descriptionInput.value = "";
     dateInput.value = formatDate(new Date());
@@ -34,7 +35,9 @@ function addTodoEventListeners() {
   });
 
   // CREATE TODO ON BUTTON CLICK + ERROR HANDLING
-  const createTodoButton = document.getElementById("create-todo-button");
+  const createTodoButton = document.createElement("button");
+  createTodoButton.innerText = "Create New Todo";
+  todoModal.appendChild(createTodoButton);
   createTodoButton.addEventListener("click", function () {
     const noTitle = "Please add a title";
 
@@ -81,6 +84,44 @@ function addNewTodo(titleInput, descriptionInput, dateInput) {
   todoList.push(todoObject);
   localStorage.setItem("todoList", JSON.stringify(todoList));
   populateCalendar();
+}
+
+function editTodo(todo) {
+  const todoModal = document.getElementById("new-todo-modal");
+  const titleInput = document.getElementById("todo-title");
+  const descriptionInput = document.getElementById("todo-description");
+  const dateInput = document.getElementById("todo-date");
+  const modalBg = document.getElementById("modal-bg");
+  const modalTitle = document.getElementById("modal-title");
+  const saveTodoButton = document.createElement("button");
+
+  todoModal.removeChild(todoModal.lastChild);
+  todoModal.appendChild(saveTodoButton);
+
+  modalTitle.innerText = "Edit Todo";
+  titleInput.value = todo.title;
+  descriptionInput.value = todo.description;
+  dateInput.value = todo.dateId;
+  openModal(todoModal, modalBg);
+
+  saveTodoButton.innerText = "Save changes";
+  saveTodoButton.addEventListener("click", function () {
+    const noTitle = "Please add a title";
+
+    if (titleInput.value === "" || titleInput.value === noTitle) {
+      titleInput.classList.add("text-red-500");
+      titleInput.value = noTitle;
+      titleInput.onfocus = function () {
+        titleInput.classList.remove("text-red-500");
+        titleInput.value = "";
+      };
+    } else {
+      deleteTodo(todo);
+      addNewTodo(titleInput.value, descriptionInput.value, dateInput.value);
+      updateTodaysTodoList();
+      closeModal(todoModal, modalBg);
+    }
+  });
 }
 
 /**

@@ -174,17 +174,30 @@ function updateTodaysTodoList() {
     if (todo.dateId === formatDate(copyDate)) {
       const liItem = document.createElement("li");
       const deleteButton = document.createElement("i");
-      deleteButton.classList.add("fas", "fa-trash-alt", "cursor-pointer");
+      const editButton = document.createElement("i");
+      deleteButton.classList.add(
+        "fas",
+        "fa-trash-alt",
+        "cursor-pointer",
+        "ml-2"
+      );
+      editButton.classList.add("fas", "fa-edit", "cursor-pointer");
 
       liItem.innerText = todo.title;
       liItem.classList.add("todos-list");
-      todaysTodoList.appendChild(liItem).appendChild(deleteButton);
+      todaysTodoList.appendChild(liItem).appendChild(editButton);
+
+      liItem.appendChild(deleteButton);
 
       deleteButton.addEventListener("click", function () {
         runDeleteTodoAnimation(liItem, 700);
         setTimeout(() => {
           deleteTodo(todo);
         }, 600);
+      });
+
+      editButton.addEventListener("click", function () {
+        editTodo(todo);
       });
     }
   }

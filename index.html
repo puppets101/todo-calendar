@@ -121,7 +121,7 @@
         <!-- TODO INPUT -->
         <div id="modal-bg" class="new-modal-bg"></div>
         <div id="new-todo-modal" class="modal-content">
-          <h2 class="text-xl">Create new todo</h2>
+          <h2 id="modal-title" class="text-xl">Create new todo</h2>
           <label for="title">Todo Title</label>
           <input
             class="border-b-2 mb-3 focus:text-black"
@@ -147,9 +147,13 @@
             type="date"
             name="todo-date"
           />
-          <button type="submit" id="create-todo-button" class="border-2 m-2">
-            Create todo
-          </button>
+          <!-- <button
+            type="submit"
+            id="create-todo-button"
+            class="create-todo-button border-2 m-2"
+          >
+            
+          </button> -->
           <button
             id="exit-modal-button"
             class="black absolute top-0 right-0 mr-3 mt-2"
