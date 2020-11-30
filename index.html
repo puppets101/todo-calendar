@@ -120,7 +120,7 @@
         ></div>
         <!-- TODO INPUT -->
         <div id="modal-bg" class="new-modal-bg"></div>
-        <div id="new-todo-modal" class="modal-content">
+        <div id="new-todo-modal" class="modal-content modal">
           <h2 id="modal-title" class="text-xl">Create new todo</h2>
           <label for="title">Todo Title</label>
           <input
@@ -147,13 +147,13 @@
             type="date"
             name="todo-date"
           />
-          <!-- <button
+          <button
             type="submit"
             id="create-todo-button"
             class="create-todo-button border-2 m-2"
           >
-            
-          </button> -->
+            Create New Todo
+          </button>
           <button
             id="exit-modal-button"
             class="black absolute top-0 right-0 mr-3 mt-2"
@@ -163,8 +163,53 @@
         </div>
         <!-- END TODO INPUT -->
 
+        <!-- EDIT TODO INPUT -->
+        <div id="modal-bg" class="new-modal-bg"></div>
+        <div id="edit-todo-modal" class="modal-content modal">
+          <h2 id="edit-modal-title" class="text-xl">Edit new todo</h2>
+          <label for="title">Todo Title</label>
+          <input
+            class="border-b-2 mb-3 focus:text-black"
+            id="edit-todo-title"
+            type="text"
+            name="title"
+            value=""
+            autocomplete="off"
+          />
+          <label for="desciption">Description</label>
+          <textarea
+            class="border-2 mb-3"
+            id="edit-todo-description"
+            cols="30"
+            rows="5"
+            type="text"
+            name="description"
+          ></textarea>
+          <label for="todo-date">Choose date</label>
+          <input
+            class="border-b-2 mb-3"
+            id="edit-todo-date"
+            type="date"
+            name="todo-date"
+          />
+          <button
+            type="submit"
+            id="save-todo-button"
+            class="create-todo-button border-2 m-2"
+          >
+            Save Todo
+          </button>
+          <button
+            id="exit-edit-modal-button"
+            class="black absolute top-0 right-0 mr-3 mt-2"
+          >
+            <i class="fas fa-times text-xl"></i>
+          </button>
+        </div>
+        <!-- END EDIT TODO INPUT -->
+
         <!-- DAY POP-UP -->
-        <div id="day-popup" class="day-popup">
+        <div id="day-popup" class="day-popup modal">
           <button id="exit-day-popup" class="flex justify-end pb-2">
             <i class="fas fa-times text-xl"></i>
           </button>

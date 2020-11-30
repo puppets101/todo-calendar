@@ -26,18 +26,16 @@ function addTodoEventListeners() {
 
   // EXIT CREATE TODO MODAL BUTTON
   exitModalButton.addEventListener("click", function () {
-    closeModal(todoModal, modalBg);
+    closeModal();
   });
 
   // EXIT CREATE TODO MODAL BACKGROUND
   modalBg.addEventListener("click", function () {
-    closeModal(todoModal, modalBg);
+    closeModal();
   });
 
   // CREATE TODO ON BUTTON CLICK + ERROR HANDLING
-  const createTodoButton = document.createElement("button");
-  createTodoButton.innerText = "Create New Todo";
-  todoModal.appendChild(createTodoButton);
+  const createTodoButton = document.getElementById("create-todo-button");
   createTodoButton.addEventListener("click", function () {
     const noTitle = "Please add a title";
 
@@ -51,7 +49,7 @@ function addTodoEventListeners() {
     } else {
       addNewTodo(titleInput.value, descriptionInput.value, dateInput.value);
       updateTodaysTodoList();
-      closeModal(todoModal, modalBg);
+      closeModal();
     }
   });
 }
@@ -87,24 +85,26 @@ function addNewTodo(titleInput, descriptionInput, dateInput) {
 }
 
 function editTodo(todo) {
-  const todoModal = document.getElementById("new-todo-modal");
-  const titleInput = document.getElementById("todo-title");
-  const descriptionInput = document.getElementById("todo-description");
-  const dateInput = document.getElementById("todo-date");
+  const todoModal = document.getElementById("edit-todo-modal");
+  const titleInput = document.getElementById("edit-todo-title");
+  const descriptionInput = document.getElementById("edit-todo-description");
+  const dateInput = document.getElementById("edit-todo-date");
   const modalBg = document.getElementById("modal-bg");
-  const modalTitle = document.getElementById("modal-title");
-  const saveTodoButton = document.createElement("button");
-
-  todoModal.removeChild(todoModal.lastChild);
-  todoModal.appendChild(saveTodoButton);
-
-  modalTitle.innerText = "Edit Todo";
+  const saveTodoButton = document.getElementById("save-todo-button");
+  const exitModalButton = document.getElementById("exit-edit-modal-button");
   titleInput.value = todo.title;
   descriptionInput.value = todo.description;
   dateInput.value = todo.dateId;
   openModal(todoModal, modalBg);
 
-  saveTodoButton.innerText = "Save changes";
+  const todoIndex = todoList.findIndex(
+    (todo) => todo.title === titleInput.value
+  );
+
+  exitModalButton.addEventListener("click", function () {
+    closeModal();
+  });
+
   saveTodoButton.addEventListener("click", function () {
     const noTitle = "Please add a title";
 
@@ -116,10 +116,12 @@ function editTodo(todo) {
         titleInput.value = "";
       };
     } else {
-      deleteTodo(todo);
-      addNewTodo(titleInput.value, descriptionInput.value, dateInput.value);
+      todoList[todoIndex].title = titleInput.value;
+      todoList[todoIndex].description = descriptionInput.value;
+      todoList[todoIndex].dateId = dateInput.value;
+      localStorage.setItem("todoList", JSON.stringify(todoList));
       updateTodaysTodoList();
-      closeModal(todoModal, modalBg);
+      closeModal();
     }
   });
 }
@@ -142,14 +144,21 @@ function openModal(modal, modalBg) {
  * @param {HTMLElement} modal Create new todo modal
  * @param {HTMLElement} modalBg Calendar background
  */
-function closeModal(modal, modalBg) {
-  modal.classList.remove("modal-opacity", "modal-size");
-  modalBg.classList.remove("modal-opacity");
-  setTimeout(function () {
-    modal.classList.remove("modal-visible");
-    modalBg.classList.remove("modal-visible");
-  }, 200);
-  clearTimeout();
+function closeModal() {
+  const modals = document.querySelectorAll(".modal");
+  const modalBgs = document.querySelectorAll(".new-modal-bg");
+  for (const modal of modals) {
+    modal.classList.remove("modal-opacity", "modal-size");
+    setTimeout(function () {
+      modal.classList.remove("modal-visible");
+    }, 200);
+  }
+  for (const modalBg of modalBgs) {
+    setTimeout(function () {
+      modalBg.classList.remove("modal-visible");
+      modalBg.classList.remove("modal-opacity");
+    }, 200);
+  }
 }
 
 /**
@@ -163,3 +172,13 @@ function deleteTodo(todo) {
   updateTodaysTodoList();
   populateCalendar();
 }
+
+/* function updateTodoValues() {
+  const todoIndex = todoList.findIndex(
+    (todo) => todo.title === titleInput.value
+  );
+  todoList[todoIndex].title = titleInput.value;
+  todoList[todoIndex].description = descriptionInput.value;
+  todoList[todoIndex].dateId = dateInput.value;
+}
+ */
