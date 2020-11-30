@@ -20,10 +20,10 @@
     <script src="./scripts/todo.js"></script>
     <script src="./scripts/animations.js"></script>
   </head>
-  <body class="bg-gray-400 h-full flex flex-col flex-1">
+  <body class="bg-gray-600 h-full flex flex-col flex-1 text-white">
     <!-- HEADER START -->
     <header class="bg-gray-600 p-2 flex justify-between items-center">
-      <div class="title w-64 italie pt-1 text-3xl leading-none">ToDo</div>
+      <div class="title mr-2 italie pt-1 text-3xl leading-none">todos</div>
       <div class="hamburger-div hidden">
         <button class="hamburger-btn text-1xl">
           <i class="fas fa-bars"></i>
@@ -33,7 +33,7 @@
         <!-- PREVIOUS MONTH START -->
         <div>
           <button
-            class="text-black rounded-l px-1 hover:text-gray-800 header-element w-32 text-left"
+            class="prev-month rounded-l px-1 header-element w-32 text-left"
           >
             <i class="fas fa-chevron-left p-1"></i>
             <span id="previous-month"></span>
@@ -42,16 +42,13 @@
         <!-- END PREVIOUS MONTH -->
 
         <!-- CURRENT MONTH START -->
-        <div
-          id="current-month"
-          class="text-black px-1 header-element w-36"
-        ></div>
+        <div id="current-month" class="px-1 header-element w-36"></div>
         <!-- END CURRENT MONTH -->
 
         <!-- NEXT MONTH START -->
         <div class="">
           <button
-            class="text-black rounded-l px-1 hover:text-gray-800 header-element w-32 text-right"
+            class="next-month rounded-l px-1 header-element w-32 text-right"
           >
             <span id="next-month"></span>
             <i class="fas fa-chevron-right p-1"></i>
@@ -64,14 +61,19 @@
 
     <div class="flex flex-1 main-container">
       <!-- SIDEBAR -->
-      <aside class="h-full w-64 p-3">
+      <aside class="h-full w-64 p-3 text-black">
         <div class="flex flex-col justify-between">
           <div class="flex flex-col">
-            <div class="bg-gray flex items-start justify-evenly">
-              <div class="bg-white border-2 border-black rounded leading-snug">
-                <h2 id="sidebar-time" class="p-2 text-xl"></h2>
+            <div class="flex flex-col items-center justify-evenly">
+              <div class="leading-snug mb-2">
+                <h2
+                  id="sidebar-time"
+                  class="p-1 digital text-2xl leading-tight text-white"
+                ></h2>
               </div>
-              <div class="border-2 border-red-600 rounded bg-white text-center">
+              <div
+                class="border-2 border-red-600 rounded bg-white text-center text-black"
+              >
                 <h3 id="sidebar-month" class="p-1 bg-red-600"></h3>
                 <h3 id="sidebar-date" class="text-4xl leading-snug"></h3>
                 <h2 id="sidebar-weekday" class="text-xs"></h2>
@@ -84,16 +86,7 @@
                 <!-- Code injected from JavaScript -->
               </ul>
             </div>
-            <button
-              id="add-todo-button"
-              class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-6 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-            >
-              New Todo
-            </button>
-          </div>
-          <div class="py-4 flex flex-col">
-            <h2 class="py-1 italic">* Todos</h2>
-            <h2 class="py-1 italic">* Svenska helgdagar</h2>
+            <button id="add-todo-button" class="btn">New Todo</button>
           </div>
         </div>
       </aside>
@@ -103,7 +96,7 @@
       <main
         class="bg-gray-500 p-3 w-full h-full relative flex flex-col overflow-hidden"
       >
-        <div class="grid grid-cols-7 text-center">
+        <div class="grid grid-cols-7 text-center text-black">
           <div class="bg-white">Monday</div>
           <div>Tuesday</div>
           <div class="bg-white">Wednesday</div>
@@ -121,28 +114,28 @@
         <!-- TODO INPUT -->
         <div id="modal-bg" class="new-modal-bg"></div>
         <div id="new-todo-modal" class="modal-content modal">
-          <h2 id="modal-title" class="text-xl">Create new todo</h2>
-          <label for="title">Todo Title</label>
+          <h2 id="modal-title" class="large-heading">Create new todo</h2>
+          <label class="small-heading" for="title">Todo Title</label>
           <input
-            class="border-b-2 mb-3 focus:text-black"
+            class="rounded border-b-2 mb-3 focus:text-black"
             id="todo-title"
             type="text"
             name="title"
             value=""
             autocomplete="off"
           />
-          <label for="desciption">Description</label>
+          <label class="small-heading" for="desciption">Description</label>
           <textarea
-            class="border-2 mb-3"
+            class="border-2 mb-3 rounded"
             id="todo-description"
             cols="30"
             rows="5"
             type="text"
             name="description"
           ></textarea>
-          <label for="todo-date">Choose date</label>
+          <label class="small-heading" for="todo-date">Choose date</label>
           <input
-            class="border-b-2 mb-3"
+            class="text-right rounded mb-3"
             id="todo-date"
             type="date"
             name="todo-date"
@@ -150,13 +143,13 @@
           <button
             type="submit"
             id="create-todo-button"
-            class="create-todo-button border-2 m-2"
+            class="btn create-todo-button border-2 m-2"
           >
             Create New Todo
           </button>
           <button
             id="exit-modal-button"
-            class="black absolute top-0 right-0 mr-3 mt-2"
+            class="black absolute top-0 right-0 mr-3 mt-2 exit-btn"
           >
             <i class="fas fa-times text-xl"></i>
           </button>
@@ -176,7 +169,7 @@
             value=""
             autocomplete="off"
           />
-          <label for="desciption">Description</label>
+          <label class="small-heading" for="desciption">Description</label>
           <textarea
             class="border-2 mb-3"
             id="edit-todo-description"
@@ -185,7 +178,7 @@
             type="text"
             name="description"
           ></textarea>
-          <label for="todo-date">Choose date</label>
+          <label class="small-heading" for="todo-date">Choose date</label>
           <input
             class="border-b-2 mb-3"
             id="edit-todo-date"
@@ -201,7 +194,7 @@
           </button>
           <button
             id="exit-edit-modal-button"
-            class="black absolute top-0 right-0 mr-3 mt-2"
+            class="black absolute top-0 right-0 mr-3 mt-2 exit-btn"
           >
             <i class="fas fa-times text-xl"></i>
           </button>
@@ -210,11 +203,11 @@
 
         <!-- DAY POP-UP -->
         <div id="day-popup" class="day-popup modal">
-          <button id="exit-day-popup" class="flex justify-end pb-2">
+          <button id="exit-day-popup" class="flex justify-end pb-2 exit-btn">
             <i class="fas fa-times text-xl"></i>
           </button>
           <div>
-            <div class="flex w-full justify-between font-bold">
+            <div class="flex w-full justify-between font-bold text-white">
               <h2>Todos on this day</h2>
               <h2 id="popup-date">November 25</h2>
             </div>

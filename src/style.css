@@ -2,28 +2,77 @@
   font-family: Italie;
   src: url("../assets/1talie\ 2.ttf");
 }
+@font-face {
+  font-family: Digital;
+  src: url("../assets/digital-7.ttf");
+}
 
 .italie {
   font-family: Italie;
 }
 
-button:focus {
+.digital {
+  font-family: Digital;
+}
+
+button:focus,
+input:focus {
   outline: none;
+}
+
+input,
+textarea {
+  border: none;
+  color: black;
+  padding: 0.25rem 0.5rem;
+}
+
+.title {
+  width: 13rem;
+}
+
+.btn {
+  border: 1px solid white;
+  min-width: 80%;
+  margin: auto;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 10px;
+  transition: all 200ms ease;
+}
+
+.btn:hover {
+  transform: translateY(-5%) scale(1.05);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.exit-btn {
+  color: white;
+  position: absolute;
+  top: 2%;
+  right: 1%;
+  transition: all 200ms ease;
+}
+
+.exit-btn:hover {
+  color: rgb(255, 106, 95);
+  transform: scale(1.2);
 }
 
 .daybox {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  background: white;
-  border: 1px solid black;
+  color: white;
+  border: 1px solid white;
   padding: 0.5rem;
   transition: all 300ms ease;
 }
 
 .daybox:hover {
-  box-shadow: 1px 2px black;
-  transform: scale(1.05);
+  box-shadow: 1px 2px white;
+  transform: translateY(-2%);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .blankbox {
@@ -62,7 +111,7 @@ button:focus {
   align-items: center;
   border-radius: 5px;
   padding: 1.5rem;
-  background-color: white;
+  background-color: #718096d2;
   transform: scale(0);
   transition: all 500ms ease;
   opacity: 0;
@@ -73,20 +122,20 @@ button:focus {
   display: none;
   flex-direction: column;
   justify-content: start;
-  align-items: top;
   left: 30%;
   top: 15%;
   transform: translate(-25%, -25%);
   transition: all 500ms ease;
 
   border-radius: 5px;
-  padding: 1rem 1.5rem;
+  padding: 2rem 1.5rem 1rem 1.5rem;
 
   transform: scale(0);
   min-width: 40%;
   max-height: 80%;
-  overflow: scroll;
-  background-color: rgb(241, 241, 241);
+  overflow-x: hidden;
+  background-color: #718096;
+  color: black;
   opacity: 0;
 }
 
@@ -118,4 +167,26 @@ input:focus {
 .todo-delete-btn {
   position: absolute;
   right: 0;
+}
+
+.next-month,
+.prev-month {
+  transition: all 200ms ease;
+}
+
+.prev-month:hover {
+  transform: translateX(-5%);
+}
+.next-month:hover {
+  transform: translateX(5%);
+}
+
+.large-heading {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.small-heading {
+  font-size: 0.9rem;
+  color: black;
 }

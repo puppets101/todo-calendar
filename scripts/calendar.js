@@ -215,6 +215,7 @@ function addDay(day, numberOfTodos, daysArray) {
   todoPara.classList.add("daybox-todo-number");
 
   datePara.innerText = day.date.getDate();
+
   if (numberOfTodos != 0) {
     todoPara.innerText = numberOfTodos;
   }
