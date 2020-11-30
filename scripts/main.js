@@ -6,7 +6,7 @@ window.addEventListener("load", start);
 function start() {
   getTodosFromLs();
   addTodoEventListeners();
-  setInterval(renderClockInSidebar, 1000);
+  sidebar();
   updateTodaysTodoList();
   calendar();
 }

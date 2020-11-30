@@ -1,7 +1,15 @@
+function sidebar() {
+  renderClockInSidebar(date);
+  setInterval(() => {
+    const sidebarDate = new Date();
+    renderClockInSidebar(sidebarDate);
+  }, 1000);
+}
+
 /**
  * Runs on load and calls sidebar functions
  */
-function renderClockInSidebar() {
+function renderClockInSidebar(date) {
   renderMonth(date);
   renderWeekday(date);
   renderTime(date);
@@ -136,9 +144,11 @@ function renderTime(date) {
   const time = document.getElementById("sidebar-time");
   let hours = date.getHours();
   let minutes = date.getMinutes();
+  let seconds = date.getSeconds();
   hours = formatDateString(hours);
   minutes = formatDateString(minutes);
-  time.innerText = hours + ":" + minutes;
+  seconds = formatDateString(seconds);
+  time.innerText = hours + ":" + minutes + ":" + seconds;
 }
 
 /**
