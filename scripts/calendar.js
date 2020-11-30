@@ -129,10 +129,10 @@ function openDayPopup(day, dayPopup) {
   openModal(dayPopup, modalBg);
 
   exitButton.addEventListener("click", function () {
-    closeModal(dayPopup, modalBg);
+    closeModal();
   });
   modalBg.addEventListener("click", function () {
-    closeModal(dayPopup, modalBg);
+    closeModal();
   });
 }
 

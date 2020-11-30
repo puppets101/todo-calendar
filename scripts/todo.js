@@ -14,9 +14,10 @@ function addTodoEventListeners() {
   const dateInput = document.getElementById("todo-date");
   const modalBg = document.getElementById("modal-bg");
   const exitModalButton = document.getElementById("exit-modal-button");
-
+  const modalTitle = document.getElementById("modal-title");
   // OPEN CREATE TODO MODAL BUTTON
   openTodoModal.addEventListener("click", function () {
+    modalTitle.innerText = "Create New Todo";
     titleInput.value = "";
     descriptionInput.value = "";
     dateInput.value = formatDate(new Date());
@@ -25,12 +26,12 @@ function addTodoEventListeners() {
 
   // EXIT CREATE TODO MODAL BUTTON
   exitModalButton.addEventListener("click", function () {
-    closeModal(todoModal, modalBg);
+    closeModal();
   });
 
   // EXIT CREATE TODO MODAL BACKGROUND
   modalBg.addEventListener("click", function () {
-    closeModal(todoModal, modalBg);
+    closeModal();
   });
 
   // CREATE TODO ON BUTTON CLICK + ERROR HANDLING
@@ -48,7 +49,7 @@ function addTodoEventListeners() {
     } else {
       addNewTodo(titleInput.value, descriptionInput.value, dateInput.value);
       updateTodaysTodoList();
-      closeModal(todoModal, modalBg);
+      closeModal();
     }
   });
 }
@@ -83,6 +84,48 @@ function addNewTodo(titleInput, descriptionInput, dateInput) {
   populateCalendar();
 }
 
+function editTodo(todo) {
+  const todoModal = document.getElementById("edit-todo-modal");
+  const titleInput = document.getElementById("edit-todo-title");
+  const descriptionInput = document.getElementById("edit-todo-description");
+  const dateInput = document.getElementById("edit-todo-date");
+  const modalBg = document.getElementById("modal-bg");
+  const saveTodoButton = document.getElementById("save-todo-button");
+  const exitModalButton = document.getElementById("exit-edit-modal-button");
+  titleInput.value = todo.title;
+  descriptionInput.value = todo.description;
+  dateInput.value = todo.dateId;
+  openModal(todoModal, modalBg);
+
+  const todoIndex = todoList.findIndex(
+    (todo) => todo.title === titleInput.value
+  );
+
+  exitModalButton.addEventListener("click", function () {
+    closeModal();
+  });
+
+  saveTodoButton.addEventListener("click", function () {
+    const noTitle = "Please add a title";
+
+    if (titleInput.value === "" || titleInput.value === noTitle) {
+      titleInput.classList.add("text-red-500");
+      titleInput.value = noTitle;
+      titleInput.onfocus = function () {
+        titleInput.classList.remove("text-red-500");
+        titleInput.value = "";
+      };
+    } else {
+      todoList[todoIndex].title = titleInput.value;
+      todoList[todoIndex].description = descriptionInput.value;
+      todoList[todoIndex].dateId = dateInput.value;
+      localStorage.setItem("todoList", JSON.stringify(todoList));
+      updateTodaysTodoList();
+      closeModal();
+    }
+  });
+}
+
 /**
  * Sets the create new todo modal to visible
  * @param {HTMLElement} modal Create new todo modal
@@ -101,14 +144,21 @@ function openModal(modal, modalBg) {
  * @param {HTMLElement} modal Create new todo modal
  * @param {HTMLElement} modalBg Calendar background
  */
-function closeModal(modal, modalBg) {
-  modal.classList.remove("modal-opacity", "modal-size");
-  modalBg.classList.remove("modal-opacity");
-  setTimeout(function () {
-    modal.classList.remove("modal-visible");
-    modalBg.classList.remove("modal-visible");
-  }, 200);
-  clearTimeout();
+function closeModal() {
+  const modals = document.querySelectorAll(".modal");
+  const modalBgs = document.querySelectorAll(".new-modal-bg");
+  for (const modal of modals) {
+    modal.classList.remove("modal-opacity", "modal-size");
+    setTimeout(function () {
+      modal.classList.remove("modal-visible");
+    }, 200);
+  }
+  for (const modalBg of modalBgs) {
+    setTimeout(function () {
+      modalBg.classList.remove("modal-visible");
+      modalBg.classList.remove("modal-opacity");
+    }, 200);
+  }
 }
 
 /**
@@ -122,3 +172,13 @@ function deleteTodo(todo) {
   updateTodaysTodoList();
   populateCalendar();
 }
+
+/* function updateTodoValues() {
+  const todoIndex = todoList.findIndex(
+    (todo) => todo.title === titleInput.value
+  );
+  todoList[todoIndex].title = titleInput.value;
+  todoList[todoIndex].description = descriptionInput.value;
+  todoList[todoIndex].dateId = dateInput.value;
+}
+ */
