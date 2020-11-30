@@ -122,10 +122,12 @@ function openDayPopup(day, dayPopup) {
   const exitButton = document.getElementById("exit-day-popup");
 
   const dayPopupDate = document.getElementById("popup-date");
-  popUpTodoList.innerHTML = "No todos on this day yet!";
   dayPopupDate.innerText = formatMonthString(day.date);
 
   renderTodosInPopup(day, popUpTodoList, dayPopup);
+  if (popUpTodoList.innerHTML === "") {
+    popUpTodoList.innerHTML = "No todos on this day yet!";
+  }
   openModal(dayPopup, modalBg);
 
   exitButton.addEventListener("click", function () {
@@ -143,26 +145,36 @@ function openDayPopup(day, dayPopup) {
  * @param {HTMLElement} dayPopup modal container
  */
 function renderTodosInPopup(day, popUpTodoList, dayPopup) {
+  popUpTodoList.innerHTML = "";
   for (const todo of todoList) {
     if (day.dateId === todo.dateId) {
-      popUpTodoList.innerHTML = "";
       const todoWrapper = document.createElement("div");
       const todoTitle = document.createElement("p");
       const todoDescription = document.createElement("p");
       const divider = document.createElement("hr");
+      const editTodoButton = document.createElement("i");
       const deleteTodoButton = document.createElement("i");
 
       todoTitle.innerText = todo.title;
       todoDescription.innerText = todo.description;
 
-      todoTitle.classList.add("pb-1", "flex", "justify-between");
+      todoWrapper.classList.add("flex", "flex-col", "items-start", "relative");
+
+      todoTitle.classList.add("pb-1");
       divider.classList.add("pb-4");
-      deleteTodoButton.classList.add("fas", "fa-trash-alt", "cursor-pointer");
+      deleteTodoButton.classList.add(
+        "fas",
+        "fa-trash-alt",
+        "cursor-pointer",
+        "todo-delete-btn"
+      );
+      editTodoButton.classList.add("fas", "fa-edit", "ml-2", "text-xs");
 
       popUpTodoList
         .appendChild(todoWrapper)
         .appendChild(todoTitle)
-        .appendChild(deleteTodoButton);
+        .appendChild(editTodoButton);
+      todoWrapper.appendChild(deleteTodoButton);
       todoWrapper.appendChild(todoDescription);
       popUpTodoList.appendChild(divider);
 
@@ -172,6 +184,10 @@ function renderTodosInPopup(day, popUpTodoList, dayPopup) {
           deleteTodo(todo);
           openDayPopup(day, dayPopup);
         }, 600);
+      });
+
+      editTodoButton.addEventListener("click", function () {
+        editTodo(todo);
       });
     }
   }

@@ -191,11 +191,19 @@ function updateTodaysTodoList() {
         "cursor-pointer",
         "ml-2"
       );
-      editButton.classList.add("fas", "fa-edit", "cursor-pointer");
+      editButton.classList.add(
+        "fas",
+        "fa-edit",
+        "cursor-pointer",
+        "ml-2",
+        "text-xs"
+      );
 
       liItem.innerText = todo.title;
-      liItem.classList.add("todos-list");
+      liItem.classList.add("todos-list", "relative", "flex", "items-center");
       todaysTodoList.appendChild(liItem).appendChild(editButton);
+
+      deleteButton.classList.add("todo-delete-btn");
 
       liItem.appendChild(deleteButton);
 
