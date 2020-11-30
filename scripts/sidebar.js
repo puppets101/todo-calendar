@@ -2,19 +2,10 @@
  * Runs on load and calls sidebar functions
  */
 function renderClockInSidebar() {
-  renderYear(date);
   renderMonth(date);
   renderWeekday(date);
   renderTime(date);
-}
-
-/**
- * Render current year in sidebar
- * @param {Date} date
- */
-function renderYear(date) {
-  const year = document.getElementById("year-clock");
-  year.innerText = date.getFullYear();
+  renderDate(date);
 }
 
 /**
@@ -22,8 +13,47 @@ function renderYear(date) {
  * @param {Date} date
  */
 function renderMonth(date) {
-  const month = document.getElementById("month-clock");
-  month.innerText = formatMonthString(date);
+  const month = document.getElementById("sidebar-month");
+  currentMonth = date.getMonth();
+
+  switch (currentMonth) {
+    case 0:
+      month.innerText = "January";
+      break;
+    case 1:
+      month.innerText = "February";
+      break;
+    case 2:
+      month.innerText = "March";
+      break;
+    case 3:
+      month.innerText = "April";
+      break;
+    case 4:
+      month.innerText = "May";
+      break;
+    case 5:
+      month.innerText = "June";
+      break;
+    case 6:
+      month.innerText = "July";
+      break;
+    case 7:
+      month.innerText = "August";
+      break;
+    case 8:
+      month.innerText = "September";
+      break;
+    case 9:
+      month.innerText = "October";
+      break;
+    case 10:
+      month.innerText = "November";
+      break;
+    case 11:
+      month.innerText = "December";
+      break;
+  }
 }
 
 /**
@@ -70,7 +100,7 @@ function formatMonthString(date) {
  * @param {Date} date
  */
 function renderWeekday(date) {
-  const weekday = document.getElementById("weekday-clock");
+  const weekday = document.getElementById("sidebar-weekday");
   weekday.innerText = formatWeekDay(date);
 }
 
@@ -103,7 +133,7 @@ function formatWeekDay(date) {
  * @param {Date} date
  */
 function renderTime(date) {
-  const time = document.getElementById("time-clock");
+  const time = document.getElementById("sidebar-time");
   let hours = date.getHours();
   let minutes = date.getMinutes();
   hours = formatDateString(hours);
@@ -120,6 +150,16 @@ function formatDateString(value) {
     return "0" + value;
   }
   return value;
+}
+
+/**
+ * Render current date in sidebar
+ * @param {Date} date
+ */
+function renderDate(date) {
+  const sideBarDate = document.getElementById("sidebar-date");
+
+  sideBarDate.innerText = date.getDate();
 }
 
 /**

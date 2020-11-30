@@ -1,3 +1,12 @@
+@font-face {
+  font-family: Italie;
+  src: url("../assets/1talie\ 2.ttf");
+}
+
+.italie {
+  font-family: Italie;
+}
+
 button:focus {
   outline: none;
 }
