@@ -1,8 +1,67 @@
 @media (max-width: 900px) {
+  .body {
+    height: unset;
+  }
   .title {
     display: none;
   }
   .main-container {
     flex-direction: column-reverse;
+    height: 100%;
+  }
+  .calendar {
+    height: 80vh;
+  }
+  .aside {
+    width: 100%;
+    height: unset;
+  }
+  .aside-wrapper {
+    flex-direction: column-reverse;
+  }
+  .time-date-sidebar {
+    display: none;
+  }
+  .btn {
+    margin-top: 1rem;
+    min-width: 30%;
+  }
+  .sidebar-todays-todos {
+    align-items: center;
+  }
+  .todays-todo-list-wrapper {
+    margin: 1rem 0;
+  }
+  .todos-list {
+    justify-content: center;
+  }
+  .todo-delete-btn {
+    position: initial;
+  }
+  .daybox {
+    flex-direction: column;
+  }
+  .holiday-para {
+    display: none;
+  }
+  .daybox-todo-number {
+    top: unset;
+    bottom: 5%;
+  }
+}
+
+@media (max-width: 650px) {
+  .short-text {
+    display: unset;
+  }
+  .long-text {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .previous-month-text,
+  .next-month-text {
+    display: none;
   }
 }

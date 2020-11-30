@@ -2,9 +2,9 @@
  * renders previous, current, and next month in header
  */
 function renderMonthsInHeader() {
-  const previousMonthText = document.getElementById("previous-month");
+  const previousMonthText = document.getElementById("previous-month-text");
   const currentMonthBox = document.getElementById("current-month");
-  const nextMonthText = document.getElementById("next-month");
+  const nextMonthText = document.getElementById("next-month-text");
 
   const currentMonthHeader = startDate.getMonth();
   const currentYearHeader = startDate.getFullYear();
