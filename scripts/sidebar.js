@@ -1,3 +1,6 @@
+/**
+ * Runs on load and calls sidebar functions
+ */
 function sidebar() {
   renderClockInSidebar(date);
   setInterval(() => {
@@ -7,7 +10,8 @@ function sidebar() {
 }
 
 /**
- * Runs on load and calls sidebar functions
+ * Render all time related objects in sidebar
+ * @param {Date} date Date to render from
  */
 function renderClockInSidebar(date) {
   renderMonth(date);
@@ -18,7 +22,7 @@ function renderClockInSidebar(date) {
 
 /**
  * Render current month in sidebar
- * @param {Date} date
+ * @param {Date} date Date to render from
  */
 function renderMonth(date) {
   const month = document.getElementById("sidebar-month");
@@ -66,7 +70,7 @@ function renderMonth(date) {
 
 /**
  * formats the dateobject to return day + month in a string
- * @param {Date} date
+ * @param {Date} date Date to render from
  */
 function formatMonthString(date) {
   const dayOfMonth = date.getDate();
@@ -105,7 +109,7 @@ function formatMonthString(date) {
 
 /**
  * Renders current weekday in sidebar
- * @param {Date} date
+ * @param {Date} date Date to render from
  */
 function renderWeekday(date) {
   const weekday = document.getElementById("sidebar-weekday");
@@ -114,7 +118,7 @@ function renderWeekday(date) {
 
 /**
  * Returns current day of the week index as a string
- * @param {Date} date
+ * @param {Date} date Date to format
  */
 function formatWeekDay(date) {
   const weekdayIndex = date.getDay();
@@ -138,7 +142,7 @@ function formatWeekDay(date) {
 
 /**
  * Render current time in sidebar
- * @param {Date} date
+ * @param {Date} date Date to render from
  */
 function renderTime(date) {
   const time = document.getElementById("sidebar-time");
@@ -153,7 +157,8 @@ function renderTime(date) {
 
 /**
  * Helper function returning a formatted date string
- * @param {Date} value
+ * @param {Number} value Value to format
+ * @returns {Number} Formatted value
  */
 function formatDateString(value) {
   if (value < 10) {
@@ -164,7 +169,7 @@ function formatDateString(value) {
 
 /**
  * Render current date in sidebar
- * @param {Date} date
+ * @param {Date} date Date to render from
  */
 function renderDate(date) {
   const sideBarDate = document.getElementById("sidebar-date");

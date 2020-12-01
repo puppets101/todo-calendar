@@ -1,5 +1,5 @@
 /**
- * @param {Array<Object>} todo dateId, title, description
+ * Array for todoObjects
  */
 let todoList = [];
 
@@ -145,8 +145,6 @@ function openModal(modal, modalBg) {
 
 /**
  * Sets the create new todo modal to hidden
- * @param {HTMLElement} modal Create new todo modal
- * @param {HTMLElement} modalBg Calendar background
  */
 function closeModal() {
   const modals = document.querySelectorAll(".modal");
@@ -176,13 +174,3 @@ function deleteTodo(todo) {
   updateTodaysTodoList();
   populateCalendar();
 }
-
-/* function updateTodoValues() {
-  const todoIndex = todoList.findIndex(
-    (todo) => todo.title === titleInput.value
-  );
-  todoList[todoIndex].title = titleInput.value;
-  todoList[todoIndex].description = descriptionInput.value;
-  todoList[todoIndex].dateId = dateInput.value;
-}
- */

@@ -41,40 +41,6 @@ function populateCalendar() {
 }
 
 /**
- * Helper function for animations and rendering previous month
- */
-function handlePreviousClick() {
-  const calendarGrid = document.getElementById("calendar-grid");
-
-  const headerElements = document.querySelectorAll(".header-element");
-
-  startDate.setMonth(startDate.getMonth() - 1);
-
-  // Declared in header.js
-  renderMonthsInHeader();
-  populateCalendar();
-  runPrevMonthAnimation(calendarGrid, 500);
-  runHeaderAnimation(headerElements, 500);
-}
-
-/**
- * Helper function for animations and rendering next month
- */
-function handleNextClick() {
-  const calendarGrid = document.getElementById("calendar-grid");
-
-  const headerElements = document.querySelectorAll(".header-element");
-
-  startDate.setMonth(startDate.getMonth() + 1);
-
-  // Declared in header.js
-  renderMonthsInHeader();
-  populateCalendar();
-  runHeaderAnimation(headerElements, 500);
-  runNextMonthAnimation(calendarGrid, 500);
-}
-
-/**
  * populates an array with all days in active month
  * @param {Number} currentMonth Index representing the active month
  * @returns {Array<Object>} days in active month
@@ -91,24 +57,6 @@ function getDaysArray(currentMonth) {
     copyDate.setDate(copyDate.getDate() + 1);
   }
   return daysArray;
-}
-
-/**
- * Helper function to format date to a string
- * @returns {String} YYYY-MM-DD
- */
-function formatDate(copyDate) {
-  const year = copyDate.getFullYear();
-  let month = copyDate.getMonth() + 1;
-  let day = copyDate.getDate();
-
-  // don't use ternary to assign something
-  day < 10 ? (day = "0" + day) : day;
-  month < 10 ? (month = "0" + month) : month;
-
-  const formattedDate = String(year) + "-" + String(month) + "-" + String(day);
-
-  return formattedDate;
 }
 
 /**
@@ -160,7 +108,8 @@ function renderTodosInPopup(day, popUpTodoList, dayPopup) {
 
       todoWrapper.classList.add("flex", "flex-col", "items-start", "relative");
 
-      todoTitle.classList.add("pb-1");
+      todoTitle.classList.add("pb-1", "pr-4");
+      todoDescription.classList.add("text-xs");
       divider.classList.add("pb-4");
       deleteTodoButton.classList.add(
         "fas",
@@ -268,37 +217,4 @@ function appendDayBoxes(firstDay, daysArray) {
 function clearGrid() {
   const calendarGrid = document.getElementById("calendar-grid");
   calendarGrid.innerHTML = "";
-}
-
-/**
- * Fetches swedish holidays from Svenska Dagar 2.1 (API)
- */
-async function fetchSwedishHolidays() {
-  const dataPath =
-    "https://sholiday.faboul.se/dagar/v2.1/" +
-    startDate.getFullYear() +
-    "/" +
-    (startDate.getMonth() + 1);
-  const response = await fetch(dataPath);
-  const result = await response.json();
-  return result;
-}
-
-/**
- * Renders swedish holidays to day cells
- */
-async function renderSwedishHolidays() {
-  const result = await fetchSwedishHolidays();
-
-  for (let i = 0; i < result.dagar.length; i++) {
-    const holiday = result.dagar[i].helgdag;
-    if (holiday) {
-      const holidayPara = document.createElement("p");
-      holidayPara.classList.add("text-red-600", "holiday-para");
-      holidayPara.innerText = holiday;
-      const date = result.dagar[i].datum;
-      const dayBox = document.getElementById(date);
-      dayBox.append(holidayPara);
-    }
-  }
 }

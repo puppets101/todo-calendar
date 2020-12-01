@@ -72,3 +72,36 @@ function renderMonthsInHeader() {
       break;
   }
 }
+
+/**
+ * Helper function for animations and rendering previous month
+ */
+function handlePreviousClick() {
+  const calendarGrid = document.getElementById("calendar-grid");
+
+  const headerElements = document.querySelectorAll(".header-element");
+
+  startDate.setMonth(startDate.getMonth() - 1);
+
+  renderMonthsInHeader();
+  populateCalendar();
+  runPrevMonthAnimation(calendarGrid, 500);
+  runHeaderAnimation(headerElements, 500);
+}
+
+/**
+ * Helper function for animations and rendering next month
+ */
+function handleNextClick() {
+  const calendarGrid = document.getElementById("calendar-grid");
+
+  const headerElements = document.querySelectorAll(".header-element");
+
+  startDate.setMonth(startDate.getMonth() + 1);
+
+  // Declared in header.js
+  renderMonthsInHeader();
+  populateCalendar();
+  runHeaderAnimation(headerElements, 500);
+  runNextMonthAnimation(calendarGrid, 500);
+}

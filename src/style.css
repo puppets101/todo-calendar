@@ -138,12 +138,14 @@ textarea {
   padding: 2rem 1.5rem 1rem 1.5rem;
 
   transform: scale(0);
-  min-width: 40%;
+  width: 40%;
   max-height: 80%;
   overflow-x: hidden;
   background-color: #718096;
   color: black;
   opacity: 0;
+
+  word-break: break-all;
 }
 
 .modal-visible {
@@ -191,4 +193,10 @@ input:focus {
 .small-heading {
   font-size: 0.9rem;
   color: black;
+}
+
+.fa-trash-alt {
+  position: absolute;
+  top: 0;
+  right: 0;
 }

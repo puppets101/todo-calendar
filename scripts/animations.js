@@ -1,3 +1,8 @@
+/**
+ * Animates the toggle between months in calendar. Next month to slide in.
+ * @param {HTMLElement} element Element to animate
+ * @param {Number} runTime Duration of animation
+ */
 function runNextMonthAnimation(element, runTime) {
   element.animate(
     {
@@ -11,6 +16,11 @@ function runNextMonthAnimation(element, runTime) {
   );
 }
 
+/**
+ * Animates the toggle between months in calendar. Previous month to slide in.
+ * @param {HTMLElement} element Element to animate
+ * @param {Number} runTime Duration of animation
+ */
 function runPrevMonthAnimation(element, runTime) {
   element.animate(
     {
@@ -24,6 +34,11 @@ function runPrevMonthAnimation(element, runTime) {
   );
 }
 
+/**
+ * Animates opacity of an array of elements.
+ * @param {Array<HTMLElement>} elemArray Elements to animate
+ * @param {Number} runTime Duration of animation
+ */
 function runHeaderAnimation(elemArray, runTime) {
   for (const element of elemArray) {
     element.animate(
@@ -38,6 +53,11 @@ function runHeaderAnimation(elemArray, runTime) {
   }
 }
 
+/**
+ * Animation for deleting an element. Deleted element to slide out.
+ * @param {HTMLElement} element Element to animate
+ * @param {Number} runTime Duration of animation
+ */
 function runDeleteTodoAnimation(element, runTime) {
   element.animate(
     {
