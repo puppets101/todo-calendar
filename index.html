@@ -89,16 +89,15 @@
           <!-- TODAYS TODOS LIST -->
           <div class="todays-todo-list-wrapper my-10">
             <h4 class="font-bold text-center mb-2">To Do Today:</h4>
-            <ul id="sidebar-todays-todos">
-              <!-- Code injected from JavaScript -->
-            </ul>
+            <ul id="sidebar-todays-todos"></ul>
           </div>
+          <!-- END TODAYS TODOS LIST -->
           <button id="add-todo-button" class="btn">New Todo</button>
         </div>
       </aside>
       <!-- END SIDEBAR -->
 
-      <!-- MAIN START -->
+      <!-- CALENDAR START -->
       <div
         class="calendar bg-gray-500 p-3 w-full h-full relative flex flex-col overflow-hidden justify-center items-center"
       >
@@ -123,7 +122,7 @@
           id="calendar-grid"
           class="grid grid-cols-7 w-full h-full grid-rows-6 overflow-hidden gap-1"
         ></div>
-        <!-- TODO INPUT -->
+        <!-- CREATE TODO MODAL -->
         <div id="modal-bg" class="new-modal-bg"></div>
         <div id="new-todo-modal" class="modal-content modal">
           <h2 id="modal-title" class="large-heading">Create new todo</h2>
@@ -166,9 +165,9 @@
             <i class="fas fa-times text-xl"></i>
           </button>
         </div>
-        <!-- END TODO INPUT -->
+        <!-- END CREATE TODO MODAL -->
 
-        <!-- EDIT TODO INPUT -->
+        <!-- EDIT TODO MODAL -->
         <div id="modal-bg" class="new-modal-bg"></div>
         <div id="edit-todo-modal" class="modal-content modal">
           <h2 id="edit-modal-title" class="text-xl">Edit new todo</h2>
@@ -211,7 +210,7 @@
             <i class="fas fa-times text-xl"></i>
           </button>
         </div>
-        <!-- END EDIT TODO INPUT -->
+        <!-- END EDIT TODO MODAL -->
 
         <!-- DAY POP-UP -->
         <div id="day-popup" class="day-popup modal">
@@ -220,17 +219,15 @@
           </button>
           <div>
             <div class="flex w-full justify-between font-bold text-white">
-              <!-- <h2>Todos on this day</h2> -->
               <h2 id="popup-date">November 25</h2>
             </div>
             <hr class="pb-4" />
           </div>
-          <div id="popup-todo-list" class="flex flex-col py-2">
-            <!-- INJECTED FROM CALENDAR.JS -->
-          </div>
+          <div id="popup-todo-list" class="flex flex-col py-2"></div>
         </div>
+        <!-- END DAY POP-UP -->
       </div>
-      <!-- MAIN END -->
+      <!-- END CALENDAR -->
     </div>
   </body>
 </html>
