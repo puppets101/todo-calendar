@@ -67,7 +67,7 @@ function getTodosFromLs() {
 }
 
 /**
- * pushes a todo object to the todo array and saves the array to local storage
+ * Pushes a todo object to the todo array and saves the array to local storage
  * @param {String} titleInput Todo title in add new todo modal
  * @param {String} descriptionInput Todo description in add new todo modal
  * @param {String} dateInput Todo date in add new todo modal
@@ -84,6 +84,10 @@ function addNewTodo(titleInput, descriptionInput, dateInput) {
   populateCalendar();
 }
 
+/**
+ * Add functionality to edit todo in popup box and set to LS
+ * @param {Array<Object>} todo dateId, title, description
+ */
 function editTodo(todo) {
   const todoModal = document.getElementById("edit-todo-modal");
   const titleInput = document.getElementById("edit-todo-title");
@@ -163,7 +167,7 @@ function closeModal() {
 
 /**
  * Removes a todo object from the todo array and saves the array to local storage
- * @param {Array<Object} todo dateId, title, description
+ * @param {Array<Object>} todo dateId, title, description
  */
 function deleteTodo(todo) {
   const index = todoList.indexOf(todo);
